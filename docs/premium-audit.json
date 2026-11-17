@@ -6662,7 +6662,7 @@
     }
   ],
   "mode": "strict",
-  "projectRoot": "C:\\Users\\fmgee\\OneDrive\\Desktop\\sitetransfer\\public_html",
+  "projectRoot": ".",
   "schemaVersion": 1,
   "summary": {
     "errors": 740,

@@ -1,9 +1,13 @@
 import {chromium,expect} from '@playwright/test';
 import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
 const base=process.env.TEST_URL || 'http://127.0.0.1:4174';
 const browser=await chromium.launch({channel:'chrome',args:['--mute-audio']});
 const page=await browser.newPage({viewport:{width:1366,height:900}});
 const errors=[];page.on('pageerror',e=>errors.push(e.message));
+if (process.env.TEST_APP_OVERRIDE) {
+  await page.route('**/assets/js/app.mjs',async r=>r.fulfill({contentType:'text/javascript',body:await readFile(new URL('../assets/js/app.mjs',import.meta.url),'utf8')}));
+}
 if (!process.env.TEST_URL) {
   // Emulate the observed Pages preview behavior: full responses, no ranges.
   await page.route('**/assets/audio/*.mp3',async route=>{

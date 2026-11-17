@@ -212,7 +212,9 @@ async function seekTo(seconds) {
   updateProgress();
   setStatus('Preparing seek…');
   try {
-    const response = await fetch(currentBook.sample, {signal:controller.signal});
+    // Bypass the browser's in-progress media cache entry, which may be held
+    // open by the streaming audio request while playback is paused.
+    const response = await fetch(currentBook.sample, {signal:controller.signal,cache:'no-store'});
     if (!response.ok) throw new Error('Sample download failed');
     const blob = await response.blob();
     if (controller.signal.aborted || currentBook.id !== bookId) return;
