@@ -1,19 +1,19 @@
 ---
 version: alpha
 name: SeattleVO Listening Portfolio
-description: A voice artist's listening room, with black framing, tonal panels, cover artwork, and persistent playback.
+description: A voice artist's listening room, with deep plum framing, tonal panels, cover artwork, and persistent playback.
 colors:
-  frame: "#080808"
-  surface: "#141414"
-  raised: "#202020"
-  hover: "#2b2b2b"
-  line: "#373737"
-  text: "#f5f3ef"
-  muted: "#b3b1ae"
-  accent: "#dfa993"
-  accent-hover: "#f0c2ae"
-  sage: "#bdd4c6"
-  lavender: "#d2c4e5"
+  frame: "#140b18"
+  surface: "#1f1224"
+  raised: "#2a1c30"
+  hover: "#38263f"
+  line: "#503c59"
+  text: "#f2ecf8"
+  muted: "#a799b4"
+  accent: "#b58be3"
+  accent-hover: "#cba7ee"
+  secondary-accent: "#cbb4de"
+  lavender: "#d8c1ee"
   error: "#ffb5ae"
 typography:
   body:
@@ -44,13 +44,13 @@ components:
 
 An audio portfolio for audiobook rights holders evaluating Steve Schaeffer after an audition. Secondary visitors are commercial voiceover clients. English interface, Seattle/US professional context; no Japan-market or multilingual scope.
 
-Hybrid register: expressive landing page and biography inside an application-style catalog and player. The user's Spotify screenshot is the structural reference: black outer frame, closely spaced rounded panels, clear active navigation, art-led browsing, and permanent transport. The distinctive signature is the waveform nameplate paired with Steve's real monochrome studio portrait and audiobook covers. No Spotify logo, retail checkout, playlists, or invented metrics.
+Hybrid register: expressive landing page and biography inside an application-style catalog and player. The user's Spotify screenshot is the structural reference: near-black plum outer frame, closely spaced rounded panels, clear active navigation, art-led browsing, and permanent transport. The distinctive signature is the waveform nameplate paired with Steve's real monochrome studio portrait and audiobook covers. No Spotify logo, retail checkout, playlists, or invented metrics.
 
 Runtime tokens in `assets/css/portfolio.css :root` are canonical (model B). This file mirrors their values and explains their roles. `colors.*` maps directly to `--*`, `typography.body` to `--font-body`, `typography.display` to `--font-display`, and `rounded.DEFAULT` to `--radius`. There is no second theme adapter or exported token layer. The project static test verifies this mapping.
 
 ## Colors
 
-Four blacks create separation rather than a flat, gloomy canvas: frame, surface, raised, and hover. Text is warm white, secondary text remains readable gray. Copper marks the primary listen action and headline; sage identifies the catalog; lavender distinguishes narration metadata. Cover artwork supplies most of the saturation. Errors use both explicit text and the error token. Only one dark theme; forced-colors preserves platform controls.
+The user-selected Deep Plum palette defines the brand: background #140B18, surface #1F1224, accent #B58BE3, text #F2ECF8, and muted #A799B4. Four plum-black tones create separation: frame, surface, raised, and hover. Pale lilac text and readable muted mauve keep the interface light. Violet marks the primary listen action and headline; a softer lilac identifies the catalog and section labels; lavender distinguishes narration metadata. Cover artwork supplies most of the saturation. Errors use both explicit text and the error token. Only one dark theme; forced-colors preserves platform controls.
 
 ## Typography
 
@@ -73,8 +73,8 @@ Tonal surfaces do the work. Shadows are reserved for large cover art and modal o
 ## Components
 
 - Navigation: real links, active pill plus `aria-current`, client-side enhancement over static routes.
-- Catalog: one shared renderer; tonal hover, copper selection edge, text/title/author, live result count. Filter chips are native pressed buttons. Search has a named clear button. All 24 results are intentionally rendered; no unnecessary pagination.
-- Buttons: copper primary, outlined secondary, quiet icon/text actions. Hover, focus, pressed, and disabled states share tokens. A two-pixel focus outline is visible on all interactive elements.
+- Catalog: one shared renderer; tonal hover, violet selection edge, text/title/author, live result count. Filter chips are native pressed buttons. Search has a named clear button. All 24 results are intentionally rendered; no unnecessary pagination.
+- Buttons: violet primary, outlined secondary, quiet icon/text actions. Hover, focus, pressed, and disabled states share tokens. A two-pixel focus outline is visible on all interactive elements.
 - Player: one audio element; all views delegate to the same controller. Idle, loading, playing, paused, ended, failed, and blocked playback have distinct text. Controls stay in place. No autoplay.
 - Dialogs: native `dialog.showModal()` for focus containment and inert background, close button, Escape, and trigger focus restoration. Video iframes are created only after a request and removed on close.
 - Scrollbars: global standards-based colors plus WebKit fallback, visible and operable, stable gutters, and forced-colors reset.
