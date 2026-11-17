@@ -15,7 +15,9 @@ export const books = [
     "description": "",
     "source": "legacy.html; author transcribed from original cover artwork",
     "thumbnail": "/assets/images/portfolio/mythology-of-the-world-128.webp",
-    "artwork": "/assets/images/portfolio/mythology-of-the-world-480.webp"
+    "artwork": "/assets/images/portfolio/mythology-of-the-world-480.webp",
+    "releaseDate": "2026-10-08",
+    "releaseDateSource": "https://www.audible.co.uk/author/David-Grayson/B07Q7FJMNF"
   },
   {
     "retailerUrl": "https://www.amazon.com/dp/B0H51S97DN",
@@ -31,7 +33,9 @@ export const books = [
     "description": "",
     "source": "legacy.html; author transcribed from original cover artwork",
     "thumbnail": "/assets/images/portfolio/the-awakening-128.webp",
-    "artwork": "/assets/images/portfolio/the-awakening-480.webp"
+    "artwork": "/assets/images/portfolio/the-awakening-480.webp",
+    "releaseDate": "2026-06-12",
+    "releaseDateSource": "https://www.audible.co.jp/search?searchNarrator=Steve+Schaeffer"
   },
   {
     "retailerUrl": "https://www.audible.com/pd/B0GZ4QVBJK",
@@ -48,7 +52,9 @@ export const books = [
     "description": "",
     "source": "legacy.html; author transcribed from original cover artwork",
     "thumbnail": "/assets/images/portfolio/killing-the-lieutenant-128.webp",
-    "artwork": "/assets/images/portfolio/killing-the-lieutenant-480.webp"
+    "artwork": "/assets/images/portfolio/killing-the-lieutenant-480.webp",
+    "releaseDate": "2026-05-01",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?searchNarrator=Steve+Schaeffer"
   },
   {
     "retailerUrl": "https://www.audible.com/pd/Bloodline-Vendetta-A-Steve-Regan-Undercover-Cop-Thriller-Audiobook/B0G7MX82VH",
@@ -64,7 +70,9 @@ export const books = [
     "description": "",
     "source": "legacy.html; author transcribed from original cover artwork",
     "thumbnail": "/assets/images/portfolio/bloodline-vendetta-128.webp",
-    "artwork": "/assets/images/portfolio/bloodline-vendetta-480.webp"
+    "artwork": "/assets/images/portfolio/bloodline-vendetta-480.webp",
+    "releaseDate": "2025-12-16",
+    "releaseDateSource": "https://www.audible.co.uk/series/Steve-Regan-Undercover-Cop-Audiobooks/B07JWB9423"
   },
   {
     "retailerUrl": "https://www.audible.com/pd/Merciless-Audiobook/B0FXBMFMDC",
@@ -80,7 +88,9 @@ export const books = [
     "description": "",
     "source": "legacy.html; author transcribed from original cover artwork",
     "thumbnail": "/assets/images/portfolio/merciless-128.webp",
-    "artwork": "/assets/images/portfolio/merciless-480.webp"
+    "artwork": "/assets/images/portfolio/merciless-480.webp",
+    "releaseDate": "2025-10-23",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?searchNarrator=Steve+Schaeffer"
   },
   {
     "retailerUrl": "https://www.audible.com/pd/Stop-Overthinking-and-Let-Go-of-Anxiety-Audiobook/B0FV55B7VR",
@@ -97,7 +107,9 @@ export const books = [
     "description": "",
     "source": "legacy.html; author transcribed from original cover artwork",
     "thumbnail": "/assets/images/portfolio/stop-overthinking-128.webp",
-    "artwork": "/assets/images/portfolio/stop-overthinking-480.webp"
+    "artwork": "/assets/images/portfolio/stop-overthinking-480.webp",
+    "releaseDate": "2025-10-07",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?searchNarrator=Steve+Schaeffer"
   },
   {
     "retailerUrl": "https://www.audible.com/pd/Oath-Bound-Audiobook/B0FMVLC4X6",
@@ -113,7 +125,9 @@ export const books = [
     "description": "",
     "source": "legacy.html; author transcribed from original cover artwork",
     "thumbnail": "/assets/images/portfolio/oath-bound-128.webp",
-    "artwork": "/assets/images/portfolio/oath-bound-480.webp"
+    "artwork": "/assets/images/portfolio/oath-bound-480.webp",
+    "releaseDate": "2025-08-19",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?searchNarrator=Steve+Schaeffer"
   },
   {
     "retailerUrl": "https://www.audible.com/pd/Wizards-Gambit-Audiobook/B0FL2YGS67",
@@ -129,7 +143,9 @@ export const books = [
     "description": "",
     "source": "legacy.html; author transcribed from original cover artwork",
     "thumbnail": "/assets/images/portfolio/wizards-gambit-128.webp",
-    "artwork": "/assets/images/portfolio/wizards-gambit-480.webp"
+    "artwork": "/assets/images/portfolio/wizards-gambit-480.webp",
+    "releaseDate": "2025-08-05",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?searchNarrator=Steve+Schaeffer"
   },
   {
     "retailerUrl": "https://www.audible.com/pd/Burg-of-Arcanum-Audiobook/B0FHBQKCNM",
@@ -145,7 +161,9 @@ export const books = [
     "description": "",
     "source": "legacy.html; author transcribed from original cover artwork",
     "thumbnail": "/assets/images/portfolio/burg-of-arcanum-128.webp",
-    "artwork": "/assets/images/portfolio/burg-of-arcanum-480.webp"
+    "artwork": "/assets/images/portfolio/burg-of-arcanum-480.webp",
+    "releaseDate": "2025-07-14",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?searchNarrator=Steve+Schaeffer"
   },
   {
     "retailerUrl": "https://www.audible.com/pd/Manhunt-Audiobook/B0FBN73PFD",
@@ -161,23 +179,9 @@ export const books = [
     "description": "",
     "source": "legacy.html; author transcribed from original cover artwork",
     "thumbnail": "/assets/images/portfolio/manhunt-128.webp",
-    "artwork": "/assets/images/portfolio/manhunt-480.webp"
-  },
-  {
-    "retailerUrl": "https://www.audible.com/pd/Battle-of-Quang-Tri-1972-Audiobook/B0DYKBQRGT",
-    "cover": "/assets/images/books/QuangTri.jpg",
-    "sample": "/assets/audio/QuangTri.mp3",
-    "id": "battle-of-quang-tri",
-    "title": "Battle of Quang Tri 1972",
-    "author": "Matt Jackson",
-    "genres": [
-      "Military fiction"
-    ],
-    "subtitle": "Undaunted Valor",
-    "description": "",
-    "source": "legacy.html; author transcribed from original cover artwork",
-    "thumbnail": "/assets/images/portfolio/battle-of-quang-tri-128.webp",
-    "artwork": "/assets/images/portfolio/battle-of-quang-tri-480.webp"
+    "artwork": "/assets/images/portfolio/manhunt-480.webp",
+    "releaseDate": "2025-06-09",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?searchNarrator=Steve+Schaeffer"
   },
   {
     "retailerUrl": "https://www.audible.com/pd/The-Rose-Slayer-Audiobook/B0F251P3N3",
@@ -193,7 +197,27 @@ export const books = [
     "description": "",
     "source": "legacy.html; author transcribed from original cover artwork",
     "thumbnail": "/assets/images/portfolio/the-rose-slayer-128.webp",
-    "artwork": "/assets/images/portfolio/the-rose-slayer-480.webp"
+    "artwork": "/assets/images/portfolio/the-rose-slayer-480.webp",
+    "releaseDate": "2025-03-24",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?searchNarrator=Steve+Schaeffer"
+  },
+  {
+    "retailerUrl": "https://www.audible.com/pd/Battle-of-Quang-Tri-1972-Audiobook/B0DYKBQRGT",
+    "cover": "/assets/images/books/QuangTri.jpg",
+    "sample": "/assets/audio/QuangTri.mp3",
+    "id": "battle-of-quang-tri",
+    "title": "Battle of Quang Tri 1972",
+    "author": "Matt Jackson",
+    "genres": [
+      "Military fiction"
+    ],
+    "subtitle": "Undaunted Valor",
+    "description": "",
+    "source": "legacy.html; author transcribed from original cover artwork",
+    "thumbnail": "/assets/images/portfolio/battle-of-quang-tri-128.webp",
+    "artwork": "/assets/images/portfolio/battle-of-quang-tri-480.webp",
+    "releaseDate": "2025-02-27",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?searchNarrator=Steve+Schaeffer"
   },
   {
     "retailerUrl": "https://www.audible.com/pd/5-Min-Resistance-Band-Exercises-for-Seniors-Audiobook/B0DKG55BN5",
@@ -210,23 +234,9 @@ export const books = [
     "description": "",
     "source": "legacy.html; author transcribed from original cover artwork",
     "thumbnail": "/assets/images/portfolio/resistance-band-128.webp",
-    "artwork": "/assets/images/portfolio/resistance-band-480.webp"
-  },
-  {
-    "retailerUrl": "https://www.audible.com/pd/Undaunted-Valor-Lam-Son-719-Audiobook/B0DF8Z88GZ",
-    "cover": "/assets/images/books/lamsoncover.jpg",
-    "sample": "/assets/audio/lamson.mp3",
-    "id": "lam-son-719",
-    "title": "Undaunted Valor: Lam Son 719",
-    "author": "Matt Jackson",
-    "genres": [
-      "Military fiction"
-    ],
-    "subtitle": "Undaunted Valor",
-    "description": "",
-    "source": "legacy.html; author transcribed from original cover artwork",
-    "thumbnail": "/assets/images/portfolio/lam-son-719-128.webp",
-    "artwork": "/assets/images/portfolio/lam-son-719-480.webp"
+    "artwork": "/assets/images/portfolio/resistance-band-480.webp",
+    "releaseDate": "2024-10-21",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?searchNarrator=Steve+Schaeffer"
   },
   {
     "retailerUrl": "https://www.audible.com/pd/B0DFMTL29F?qid=1724984939",
@@ -242,7 +252,27 @@ export const books = [
     "description": "",
     "source": "legacy.html; author transcribed from original cover artwork",
     "thumbnail": "/assets/images/portfolio/nights-redemption-128.webp",
-    "artwork": "/assets/images/portfolio/nights-redemption-480.webp"
+    "artwork": "/assets/images/portfolio/nights-redemption-480.webp",
+    "releaseDate": "2024-08-29",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?searchNarrator=Steve+Schaeffer"
+  },
+  {
+    "retailerUrl": "https://www.audible.com/pd/Undaunted-Valor-Lam-Son-719-Audiobook/B0DF8Z88GZ",
+    "cover": "/assets/images/books/lamsoncover.jpg",
+    "sample": "/assets/audio/lamson.mp3",
+    "id": "lam-son-719",
+    "title": "Undaunted Valor: Lam Son 719",
+    "author": "Matt Jackson",
+    "genres": [
+      "Military fiction"
+    ],
+    "subtitle": "Undaunted Valor",
+    "description": "",
+    "source": "legacy.html; author transcribed from original cover artwork",
+    "thumbnail": "/assets/images/portfolio/lam-son-719-128.webp",
+    "artwork": "/assets/images/portfolio/lam-son-719-480.webp",
+    "releaseDate": "2024-08-26",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?searchNarrator=Steve+Schaeffer"
   },
   {
     "retailerUrl": "https://www.audible.com/pd/B0D9PK7L7Y",
@@ -259,7 +289,9 @@ export const books = [
     "description": "",
     "source": "legacy.html; author transcribed from original cover artwork",
     "thumbnail": "/assets/images/portfolio/tai-chi-qigong-128.webp",
-    "artwork": "/assets/images/portfolio/tai-chi-qigong-480.webp"
+    "artwork": "/assets/images/portfolio/tai-chi-qigong-480.webp",
+    "releaseDate": "2024-07-19",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?searchNarrator=Steve+Schaeffer"
   },
   {
     "retailerUrl": "https://www.audible.com/pd/B0D6CBYKJB",
@@ -275,23 +307,9 @@ export const books = [
     "description": "",
     "source": "legacy.html; author transcribed from original cover artwork",
     "thumbnail": "/assets/images/portfolio/redemption-128.webp",
-    "artwork": "/assets/images/portfolio/redemption-480.webp"
-  },
-  {
-    "retailerUrl": "https://www.audible.com/pd/The-Gala-Audiobook/B0D23V4NTZ",
-    "cover": "/assets/images/books/thegala.jpg",
-    "sample": "/assets/audio/thegala.mp3",
-    "id": "the-gala",
-    "title": "The Gala",
-    "author": "Amy Tackett",
-    "genres": [
-      "Thriller"
-    ],
-    "subtitle": "A Dark, Psychological Thriller with Jaw-Dropping Twists",
-    "description": "",
-    "source": "legacy.html; author transcribed from original cover artwork",
-    "thumbnail": "/assets/images/portfolio/the-gala-128.webp",
-    "artwork": "/assets/images/portfolio/the-gala-480.webp"
+    "artwork": "/assets/images/portfolio/redemption-480.webp",
+    "releaseDate": "2024-06-06",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?searchNarrator=Steve+Schaeffer"
   },
   {
     "retailerUrl": "https://www.audible.com/pd/Tomorrows-Hope-Audiobook/B0D2M6HKFX",
@@ -308,7 +326,45 @@ export const books = [
     "source": "legacy.html; editors transcribed from original cover artwork",
     "editors": "Bart Kemper and William Joseph Roberts",
     "thumbnail": "/assets/images/portfolio/tomorrows-hope-128.webp",
-    "artwork": "/assets/images/portfolio/tomorrows-hope-480.webp"
+    "artwork": "/assets/images/portfolio/tomorrows-hope-480.webp",
+    "releaseDate": "2024-04-24",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?page=3&searchNarrator=Steve+Schaeffer"
+  },
+  {
+    "retailerUrl": "https://www.audible.com/pd/The-Gala-Audiobook/B0D23V4NTZ",
+    "cover": "/assets/images/books/thegala.jpg",
+    "sample": "/assets/audio/thegala.mp3",
+    "id": "the-gala",
+    "title": "The Gala",
+    "author": "Amy Tackett",
+    "genres": [
+      "Thriller"
+    ],
+    "subtitle": "A Dark, Psychological Thriller with Jaw-Dropping Twists",
+    "description": "",
+    "source": "legacy.html; author transcribed from original cover artwork",
+    "thumbnail": "/assets/images/portfolio/the-gala-128.webp",
+    "artwork": "/assets/images/portfolio/the-gala-480.webp",
+    "releaseDate": "2024-04-18",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?page=3&searchNarrator=Steve+Schaeffer"
+  },
+  {
+    "id": "homeschool-college-planner",
+    "title": "The Homeschool College Planner",
+    "author": "Aaron Basko",
+    "genres": [
+      "Nonfiction"
+    ],
+    "subtitle": "A Brief Guide for Homeschooling Parents",
+    "description": "",
+    "cover": "/assets/images/books/collegeplanner.jpg",
+    "sample": "/assets/audio/collegeplanner.mp3",
+    "retailerUrl": "https://www.audible.com/pd/B0CV4P1MZL",
+    "source": "test.html and index - Copy.html; author and narration credit verified against Audible listings",
+    "thumbnail": "/assets/images/portfolio/homeschool-college-planner-128.webp",
+    "artwork": "/assets/images/portfolio/homeschool-college-planner-480.webp",
+    "releaseDate": "2024-02-08",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?searchNarrator=Steve+Schaeffer"
   },
   {
     "retailerUrl": "https://www.audible.com/pd/Montana-Audiobook/B0CTKP7NNR",
@@ -324,7 +380,9 @@ export const books = [
     "description": "",
     "source": "legacy.html; author transcribed from original cover artwork",
     "thumbnail": "/assets/images/portfolio/montana-128.webp",
-    "artwork": "/assets/images/portfolio/montana-480.webp"
+    "artwork": "/assets/images/portfolio/montana-480.webp",
+    "releaseDate": "2024-01-31",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?searchNarrator=Steve+Schaeffer"
   },
   {
     "retailerUrl": "https://www.audible.com/pd/Dopamine-Diaries-Audiobook/B0CS4PTXJ9",
@@ -340,7 +398,9 @@ export const books = [
     "description": "An exploration of dopamine’s role in motivation, desire, behavior, and the way people experience reward.",
     "source": "legacy.html; author transcribed from original cover artwork; synopsis paraphrased from https://www.audible.com/pd/Dopamine-Diaries-Audiobook/B0CS4PTXJ9",
     "thumbnail": "/assets/images/portfolio/dopamine-diaries-128.webp",
-    "artwork": "/assets/images/portfolio/dopamine-diaries-480.webp"
+    "artwork": "/assets/images/portfolio/dopamine-diaries-480.webp",
+    "releaseDate": "2024-01-12",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?searchNarrator=Steve+Schaeffer"
   },
   {
     "retailerUrl": "https://www.audible.com/pd/Empty-Plates-Fuller-Lives-Audiobook/B0CNQPPV1G",
@@ -357,7 +417,9 @@ export const books = [
     "description": "",
     "source": "legacy.html; author transcribed from original cover artwork",
     "thumbnail": "/assets/images/portfolio/empty-plates-128.webp",
-    "artwork": "/assets/images/portfolio/empty-plates-480.webp"
+    "artwork": "/assets/images/portfolio/empty-plates-480.webp",
+    "releaseDate": "2023-11-20",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?searchNarrator=Steve+Schaeffer"
   },
   {
     "retailerUrl": "https://www.audible.com/pd/The-Circular-Continuum-Audiobook/B0CJZ1C643",
@@ -374,7 +436,46 @@ export const books = [
     "description": "",
     "source": "legacy.html; author transcribed from original cover artwork",
     "thumbnail": "/assets/images/portfolio/circular-continuum-128.webp",
-    "artwork": "/assets/images/portfolio/circular-continuum-480.webp"
+    "artwork": "/assets/images/portfolio/circular-continuum-480.webp",
+    "releaseDate": "2023-09-28",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?searchNarrator=Steve+Schaeffer"
+  },
+  {
+    "id": "future-of-work",
+    "title": "The Future of Work",
+    "author": "David Ewen",
+    "genres": [
+      "Nonfiction",
+      "Business"
+    ],
+    "subtitle": "Preparing for Career Success in Any Industry",
+    "description": "",
+    "cover": "/assets/images/books/2.jpg",
+    "sample": "/assets/audio/FutureofWorkSample.mp3",
+    "retailerUrl": "https://www.audible.com/pd/B0CJ5N25HX",
+    "source": "test.html and index - Copy.html; author and narration credit verified against Audible listings",
+    "thumbnail": "/assets/images/portfolio/future-of-work-128.webp",
+    "artwork": "/assets/images/portfolio/future-of-work-480.webp",
+    "releaseDate": "2023-09-18",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?page=3&searchNarrator=Steve+Schaeffer"
+  },
+  {
+    "id": "lettuce-farming",
+    "title": "A Comprehensive Step-by-Step Guide to Lettuce Farming for Beginners or Experienced",
+    "author": "Samuel Njoku",
+    "genres": [
+      "Nonfiction"
+    ],
+    "subtitle": "Cultivate Your Greens, Harvest Your Success",
+    "description": "",
+    "cover": "/assets/images/books/13.jpg",
+    "sample": "/assets/audio/LettuceSample.mp3",
+    "retailerUrl": "https://www.audible.com/pd/B0CGGKNJMQ",
+    "source": "test.html and index - Copy.html; author and narration credit verified against Audible listings",
+    "thumbnail": "/assets/images/portfolio/lettuce-farming-128.webp",
+    "artwork": "/assets/images/portfolio/lettuce-farming-480.webp",
+    "releaseDate": "2023-08-24",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?page=3&searchNarrator=Steve+Schaeffer"
   },
   {
     "retailerUrl": "https://www.audible.com/pd/How-to-Start-a-Business-Strategies-from-Idea-to-Launch-Audiobook/B0CFZT6FK2",
@@ -391,6 +492,26 @@ export const books = [
     "description": "",
     "source": "legacy.html; author transcribed from original cover artwork",
     "thumbnail": "/assets/images/portfolio/sales-samurai-128.webp",
-    "artwork": "/assets/images/portfolio/sales-samurai-480.webp"
+    "artwork": "/assets/images/portfolio/sales-samurai-480.webp",
+    "releaseDate": "2023-08-18",
+    "releaseDateSource": "https://apx-security-uk.audible.co.uk/search?page=3&searchNarrator=Steve+Schaeffer"
+  },
+  {
+    "id": "notes-to-my-highness",
+    "title": "Notes to My Highness",
+    "author": "Alex Fernand",
+    "genres": [
+      "Nonfiction"
+    ],
+    "subtitle": "100 Reflections Written in an Introspective State",
+    "description": "",
+    "cover": "/assets/images/books/15.jpg",
+    "sample": "/assets/audio/NotestomyHighnessSample.mp3",
+    "retailerUrl": "https://www.audible.com/pd/B0CDJWM982",
+    "source": "test.html and index - Copy.html; author and narration credit verified against Audible listings",
+    "thumbnail": "/assets/images/portfolio/notes-to-my-highness-128.webp",
+    "artwork": "/assets/images/portfolio/notes-to-my-highness-480.webp",
+    "releaseDate": "2023-08-02",
+    "releaseDateSource": "https://www.audible.co.jp/search?searchAuthor=Alex+Fernand"
   }
 ];

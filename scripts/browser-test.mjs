@@ -54,11 +54,11 @@ try {
   await page.locator('#catalog-search').fill('zzzz-no-match');
   await expect(page.getByText('No matching audiobooks')).toBeVisible();
   await page.getByRole('button',{name:'Clear filters',exact:true}).click();
-  await expect(page.locator('.catalog-item')).toHaveCount(24);
+  await expect(page.locator('.catalog-item')).toHaveCount(books.length);
   await page.locator('#catalog-search').fill('Stephen Bentley');
   await expect(page.locator('.catalog-item')).toHaveCount(7);
   await page.getByRole('button',{name:'Clear search',exact:true}).click();
-  await expect(page.locator('.catalog-item')).toHaveCount(24);
+  await expect(page.locator('.catalog-item')).toHaveCount(books.length);
   passed('Immediate genre/author filtering, URL state, empty state, clear search, and reset filters.');
 
   await page.locator('.hero [data-play]').click();
@@ -159,7 +159,7 @@ try {
     assert.match(response.headers()['content-type'],/audio\/mpeg/);
     const cover = await context.request.get(base+b.artwork);assert.equal(cover.status(),200,b.artwork);
   }
-  passed('All 24 MP3 and optimized cover URLs respond successfully.');
+  passed('All 28 MP3 and optimized cover URLs respond successfully.');
 
   const noJS = await browser.newContext({javaScriptEnabled:false});
   const plain = await noJS.newPage();await plain.goto(base+'/books/merciless/');

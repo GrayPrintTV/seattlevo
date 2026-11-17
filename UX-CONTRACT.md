@@ -27,3 +27,5 @@ Other shared owners: `views.mjs` renders all book details/catalog entries, `app.
 ## Verification owners
 
 `scripts/check.mjs` validates metadata, source preservation, paths, static routes, and tokens. `scripts/browser-test.mjs` covers responsive layout, keyboard, media, browsing history, filter state, accessibility, no-JS content, unavailable media/retry, autoplay restriction, offline navigation, and video dialog cleanup. Real iOS/Safari hardware testing is not claimed.
+
+- `catalog-order.mjs` owns newest-first audiobook release ordering for both generated HTML and client-side views. Every record requires a verified ISO release date and source URL. Filters preserve this order; ID breaks same-day ties. No sort selector.

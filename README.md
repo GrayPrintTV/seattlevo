@@ -31,10 +31,12 @@ node scripts/serve.mjs
 ### Adding an audiobook
 
 1. Add its MP3 and cover to the existing asset directories. Never overwrite unrelated originals.
-2. Add a unique record to `assets/data/catalog.json`. Title, ID, genre tags, cover, artwork, thumbnail, sample, and retailer URL are required. Author, editors, subtitle, and description are optional. Record the evidence in `source`.
+2. Add a unique record to `assets/data/catalog.json`. Title, ID, genre tags, cover, artwork, thumbnail, sample, retailer URL, releaseDate (YYYY-MM-DD audiobook release), and releaseDateSource (verified retailer URL) are required. Author, editors, subtitle, and description are optional. Record the evidence in `source`.
 3. Add 128px and 480px WebP cover derivatives, or point thumbnail/artwork at the original cover until optimized copies are available.
 4. Run `node scripts/build.mjs` and commit both metadata and generated pages. No duplicated HTML editing is needed; counts and routes are generated.
 5. Update the expected catalog count in `scripts/check.mjs` when intentionally adding a title, then run the checks.
+
+The catalog sorts by audiobook release date, newest first, with ID as a stable tie-breaker. There is no visitor sort control. File timestamps and print publication dates are not release-date evidence. See [release-date sources](docs/RELEASE-DATES.md).
 
 General prose is in `views.mjs`; fixed shell labels are in `scripts/page.html`. All new promotional copy is provisional and easy to revise.
 
@@ -48,7 +50,9 @@ $env:TEST_URL = 'http://127.0.0.1:4173'
 node scripts/browser-test.mjs
 ```
 
-`node scripts/test-seek-fallback.mjs` checks playback on a host that ignores byte-range requests. `node scripts/test-catalog-playback.mjs` verifies all 24 samples actually decode and play.
+`node scripts/test-seek-fallback.mjs` checks playback on a host that ignores byte-range requests. `node scripts/test-catalog-playback.mjs` verifies all catalog samples actually decode and play.
+
+`node scripts/test-restored-catalog.mjs` verifies chronological catalog/filter ordering and the four restored detail pages, artwork, accessibility, and playback on desktop and phone.
 
 The browser suite uses installed Chrome by default and records screenshots/report in ignored `test-results/`. Set `BROWSER_CHANNEL=msedge` to use installed Edge. Browser tests run muted; they verify actual media decoding/time progression and controls. Dev dependencies live under `scripts/` so the root remains a buildless static site.
 

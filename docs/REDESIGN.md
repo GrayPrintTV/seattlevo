@@ -21,7 +21,7 @@ Search-engine content is present in static HTML: descriptions, canonical URLs, O
 
 ## Migrated catalog
 
-24 active titles were extracted from the original homepage. Authors were transcribed from the actual covers; the anthology uses an editor credit. Original MP3s, cover assets, and retailer URLs remain intact. No duplicate listening-method records or commented-out titles were promoted to credits.
+24 active titles were extracted from the original homepage. Authors were transcribed from the actual covers; the anthology uses an editor credit. Original MP3s, cover assets, and retailer URLs remain intact. The initial migration did not promote commented-out titles. On 2026-11-17, the owner authorized restoring four additional titles from older saved pages, bringing the catalog to 28. All 28 now have sourced audiobook release dates and explicit newest-first sorting; see [RELEASE-DATES.md](RELEASE-DATES.md). No duplicate listening-method records were added.
 
 | Title | Author / editors | Initial genre tags | Sample |
 | --- | --- | --- | --- |

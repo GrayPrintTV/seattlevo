@@ -1,6 +1,7 @@
-import { books } from '../data/catalog.mjs';
+import { books as catalog } from '../data/catalog.mjs';
+import { sortCatalog } from './catalog-order.mjs';
 
-export { books };
+export const books = sortCatalog(catalog);
 export const featured = books[0];
 export const genres = ['All', 'Thriller', 'Fantasy', 'Nonfiction', 'Military fiction', 'Science fiction', 'Mythology', 'Wellbeing', 'True crime', 'Business'];
 export const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
