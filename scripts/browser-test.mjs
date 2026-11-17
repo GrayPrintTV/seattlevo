@@ -90,11 +90,11 @@ try {
   assert.equal(await page.locator('#audio').evaluate(a=>a.paused),true);
   await page.locator('#player-progress').focus();
   await page.keyboard.press('Home');await page.keyboard.press('ArrowRight');
-  assert.ok(await page.locator('#audio').evaluate(a=>a.currentTime)>0);
+  await page.waitForFunction(()=>document.querySelector('#audio').currentTime>0);
   await page.locator('.player [data-seek="15"]').click();
-  assert.ok(await page.locator('#audio').evaluate(a=>a.currentTime)>=15);
+  await page.waitForFunction(()=>document.querySelector('#audio').currentTime>=15);
   await page.locator('.player [data-seek="-15"]').click();
-  assert.ok(await page.locator('#audio').evaluate(a=>a.currentTime)<1);
+  await page.waitForFunction(()=>document.querySelector('#audio').currentTime<1);
   await page.locator('.player .toggle-mute').click();assert.equal(await page.locator('#audio').evaluate(a=>a.muted),true);
   await page.locator('.player .toggle-mute').click();assert.equal(await page.locator('#audio').evaluate(a=>a.muted),false);
   await page.locator('#player-volume').focus();await page.keyboard.press('ArrowLeft');
@@ -140,7 +140,7 @@ try {
   await screenshot('phone-now-playing');await axe('Now Playing dialog');
   await page.locator('#now-playing .toggle-play').click();
   await page.locator('#now-progress').focus();await page.keyboard.press('End');
-  assert.ok(await page.locator('#audio').evaluate(a=>Math.abs(a.duration-a.currentTime)<1));
+  await page.waitForFunction(()=>{const a=document.querySelector('#audio');return Math.abs(a.duration-a.currentTime)<1;});
   await page.keyboard.press('Escape');await expect(page.locator('#open-player')).toBeFocused();
   await page.goBack();await expect(page.locator('.catalog-panel')).toBeVisible();
   await expect(page.locator('[data-genre="Thriller"]')).toHaveAttribute('aria-pressed','true');

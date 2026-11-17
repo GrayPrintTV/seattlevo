@@ -17,7 +17,7 @@ The enhanced interface uses History API navigation, query-string filters/search,
 
 Mobile uses separate catalog/detail screens, not squeezed columns. The brand returns home and the Audiobooks nav opens the mobile catalog. Native dialog behavior provides focus containment and Escape/close restoration. External commercial videos pause narration and load only on request. All video links retain a direct YouTube fallback.
 
-Search-engine content is present in static HTML: descriptions, canonical URLs, Open Graph metadata, Person/Audiobook JSON-LD, contact information, and catalog links. Without JavaScript, navigation still works and native sample controls appear. Original Google Analytics property is retained with page views for sections/books, without sending catalog search queries. No new analytics property or paid service is added.
+Search-engine content is present in static HTML: descriptions, canonical URLs, Open Graph metadata, Person/Audiobook JSON-LD, contact information, and catalog links. Without JavaScript, navigation still works and native sample controls appear. Original Google Analytics property is retained with page views for sections/books, with custom page-view URLs that omit catalog search queries. No new analytics property or paid service is added.
 
 ## Migrated catalog
 
@@ -83,5 +83,7 @@ Search-engine content is present in static HTML: descriptions, canonical URLs, O
 - Official DESIGN.md lint: zero errors. It warns about CSS-owned tokens referenced in prose rather than its component-export format; runtime mapping is independently checked.
 - Premium static scanner: the raw `premium-audit.json` contains 739 “actionless button” findings because its detector recognizes inline onclick/framework handlers, not this app's delegated native listeners, and one scrollbar finding in the untouched legacy stylesheet. These are reviewed false positives/out-of-scope legacy findings, not unimplemented controls. The project wiring check and browser interaction suite verify actual actions. Strict scanner success is not claimed.
 - Actual rendered desktop, laptop, tablet, phone, detail, About, Commercial, and Now Playing screenshots were visually reviewed. A 320px nav overflow and template encoding issue were corrected before deployment.
+
+- Hosted-preview testing exposed full-file HTTP 200 responses to Range requests on both Pages preview hosts; the existing production domain returned correct HTTP 206 responses. Added a client-side fallback that buffers only the selected sample after an explicit seek. `scripts/test-seek-fallback.mjs` verifies seek/play/pause, sample switching, uninterrupted browsing after buffering, and cleanup on browser Back. No backend or Cloudflare account change is required.
 
 Limits: viewport emulation on Windows Chrome is not physical iOS/Android or Safari testing. iOS commonly delegates volume to hardware; native seek and play controls remain available. External embeds depend on YouTube, network policy, and browser privacy settings. The direct external link is always available. No email is sent during tests; the existing mailto address is verified without changing mail settings.

@@ -48,6 +48,8 @@ $env:TEST_URL = 'http://127.0.0.1:4173'
 node scripts/browser-test.mjs
 ```
 
+`node scripts/test-seek-fallback.mjs` checks playback on a host that ignores byte-range requests. `node scripts/test-catalog-playback.mjs` verifies all 24 samples actually decode and play.
+
 The browser suite uses installed Chrome by default and records screenshots/report in ignored `test-results/`. Set `BROWSER_CHANNEL=msedge` to use installed Edge. Browser tests run muted; they verify actual media decoding/time progression and controls. Dev dependencies live under `scripts/` so the root remains a buildless static site.
 
 `node scripts/check-links.mjs` checks external links and writes `docs/link-check.json`. Retailer anti-bot responses are reported separately from verified results.

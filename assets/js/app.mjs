@@ -16,6 +16,9 @@ let loadTimer;
 let previousVolume = 1;
 let dialogTrigger;
 let lastTrackedPath;
+let sampleBlobURL;
+let seekController;
+let pendingSeekTarget = null;
 
 function filters() {
   const params = new URLSearchParams(location.search);
@@ -104,14 +107,15 @@ function setStatus(text, error = false) {
 }
 function updateProgress() {
   const duration = Number.isFinite(audio.duration) ? audio.duration : 0;
-  $$('.elapsed').forEach(node => node.textContent = formatTime(audio.currentTime));
+  const position = pendingSeekTarget ?? audio.currentTime;
+  $$('.elapsed').forEach(node => node.textContent = formatTime(position));
   $$('.duration').forEach(node => node.textContent = formatTime(duration));
   $$('.progress').forEach(input => {
     input.disabled = duration <= 0;
     input.max = duration || 100;
-    input.value = audio.currentTime || 0;
-    input.style.setProperty('--progress', `${duration ? audio.currentTime / duration * 100 : 0}%`);
-    input.setAttribute('aria-valuetext', `${formatTime(audio.currentTime)} of ${formatTime(duration)}`);
+    input.value = position || 0;
+    input.style.setProperty('--progress', `${duration ? position / duration * 100 : 0}%`);
+    input.setAttribute('aria-valuetext', `${formatTime(position)} of ${formatTime(duration)}`);
   });
 }
 function updateButtons() {
@@ -159,6 +163,9 @@ async function play(book = currentBook) {
   const request = ++playRequest;
   clearTimeout(loadTimer);
   if (book.id !== currentBook.id) {
+    seekController?.abort();
+    pendingSeekTarget = null;
+    if (sampleBlobURL) {URL.revokeObjectURL(sampleBlobURL);sampleBlobURL = undefined;}
     audio.pause();
     currentBook = book;
     audio.src = book.sample;
@@ -183,10 +190,65 @@ async function play(book = currentBook) {
 }
 function pause() {++playRequest;clearTimeout(loadTimer);audio.pause();setStatus('Paused');}
 function toggle() {if (audio.paused) void play();else pause();}
-function seekBy(seconds) {
+async function seekTo(seconds) {
   if (!Number.isFinite(audio.duration)) return;
-  audio.currentTime = Math.min(audio.duration, Math.max(0, audio.currentTime + seconds));
+  const target = Math.min(audio.duration, Math.max(0, seconds));
+  const directlySeekable = target === 0 || sampleBlobURL || Array.from({length:audio.seekable.length}, (_,i) => i).some(i => target >= audio.seekable.start(i) && target <= audio.seekable.end(i));
+  seekController?.abort();
+  if (directlySeekable) {
+    pendingSeekTarget = null;
+    audio.currentTime = target;
+    updateProgress();
+    return;
+  }
+  // Some static preview hosts ignore Range. Buffer only this sample, only
+  // after an explicit seek. Browsing never enters this path or swaps audio.
+  const controller = new AbortController();
+  seekController = controller;
+  const bookId = currentBook.id;
+  let timedOut = false;
+  const timeout = setTimeout(() => {timedOut = true;controller.abort();}, 15000);
+  pendingSeekTarget = target;
   updateProgress();
+  setStatus('Preparing seek…');
+  try {
+    const response = await fetch(currentBook.sample, {signal:controller.signal});
+    if (!response.ok) throw new Error('Sample download failed');
+    const blob = await response.blob();
+    if (controller.signal.aborted || currentBook.id !== bookId) return;
+    const resume = !audio.paused;
+    const requestAtSwap = ++playRequest;
+    audio.pause();
+    sampleBlobURL = URL.createObjectURL(blob);
+    const metadata = new Promise((resolve,reject) => {
+      const cleanup = () => {audio.removeEventListener('loadedmetadata',ready);audio.removeEventListener('error',failed);controller.signal.removeEventListener('abort',aborted);};
+      const ready = () => {cleanup();resolve();};
+      const failed = () => {cleanup();reject(new Error('Unable to read sample'));};
+      const aborted = () => {cleanup();reject(new DOMException('Seek cancelled','AbortError'));};
+      audio.addEventListener('loadedmetadata',ready,{once:true});
+      audio.addEventListener('error',failed,{once:true});
+      controller.signal.addEventListener('abort',aborted,{once:true});
+    });
+    audio.src = sampleBlobURL;
+    audio.load();
+    await metadata;
+    if (controller.signal.aborted || currentBook.id !== bookId) return;
+    audio.currentTime = target;
+    pendingSeekTarget = null;
+    updateProgress();
+    if (resume && requestAtSwap === playRequest) await audio.play();
+    setStatus(audio.paused ? 'Paused' : 'Playing sample');
+  } catch (error) {
+    if (timedOut) setStatus('Seeking timed out. Try again.', true);
+    else if (error.name !== 'AbortError') setStatus(error.name === 'NotAllowedError' ? 'Playback needs a tap. Press Play to listen.' : 'Could not seek. Try again when connected.', true);
+  } finally {
+    clearTimeout(timeout);
+    if (seekController === controller) {seekController = undefined;pendingSeekTarget = null;updateProgress();}
+    updateButtons();
+  }
+}
+function seekBy(seconds) {
+  void seekTo((pendingSeekTarget ?? audio.currentTime) + seconds);
 }
 function syncVolume() {
   $$('.volume').forEach(input => {input.value = audio.muted ? 0 : audio.volume;input.style.setProperty('--progress', `${Number(input.value) * 100}%`);});
@@ -208,8 +270,7 @@ audio.addEventListener('ended', () => {clearTimeout(loadTimer);setStatus('Sample
 audio.addEventListener('error', () => {clearTimeout(loadTimer);setStatus('Sample unavailable. Press Play to retry.', true);updateButtons();});
 audio.addEventListener('volumechange', syncVolume);
 $$('.progress').forEach(input => input.addEventListener('input', () => {
-  if (Number.isFinite(audio.duration)) audio.currentTime = Math.min(audio.duration, Number(input.value));
-  updateProgress();
+  void seekTo(Number(input.value));
 }));
 $$('.volume').forEach(input => input.addEventListener('input', () => {audio.volume = Number(input.value);audio.muted = false;syncVolume();}));
 
@@ -277,7 +338,7 @@ document.addEventListener('click', event => {
   navigate(url);
 });
 if ('mediaSession' in navigator) {
-  for (const [action, handler] of Object.entries({play:() => void play(),pause,seekbackward:() => seekBy(-15),seekforward:() => seekBy(15),seekto:event => {if (Number.isFinite(event.seekTime)) {audio.currentTime = event.seekTime;updateProgress();}}})) {
+  for (const [action, handler] of Object.entries({play:() => void play(),pause,seekbackward:() => seekBy(-15),seekforward:() => seekBy(15),seekto:event => {if (Number.isFinite(event.seekTime)) void seekTo(event.seekTime);}})) {
     try {navigator.mediaSession.setActionHandler(action, handler);} catch { /* Older browsers may omit individual media actions. */ }
   }
 }
