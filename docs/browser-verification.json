@@ -1,0 +1,93 @@
+{
+  "base": "http://127.0.0.1:4174",
+  "checks": [
+    "Initial load cues one sample without autoplay or loading the full catalog audio.",
+    "widescreen 1920×1080: no horizontal overflow, no player overlap, axe checks passed.",
+    "laptop 1366×768: no horizontal overflow, no player overlap, axe checks passed.",
+    "tablet-landscape 1024×768: no horizontal overflow, no player overlap, axe checks passed.",
+    "tablet-portrait 768×1024: no horizontal overflow, no player overlap, axe checks passed.",
+    "phone 390×844: no horizontal overflow, no player overlap, axe checks passed.",
+    "small-phone 320×740: no horizontal overflow, no player overlap, axe checks passed.",
+    "Immediate genre/author filtering, URL state, empty state, clear search, and reset filters.",
+    "Audio plays and continues across book selection, all sections, browser Back, and Forward.",
+    "Explicit Play switches samples; single audio element; pause, keyboard scrubbing, ±15 seconds, mute, volume.",
+    "Direct section/book links, long title layout, and accessibility on all primary views.",
+    "Commercial videos open on request, pause narration, clean up on close, and restore keyboard focus.",
+    "Phone catalog/detail navigation, persistent mini-player, expanded controls, focus restoration, and filter history.",
+    "Phone secondary views and long titles; reduced-motion preference honored.",
+    "All 24 MP3 and optimized cover URLs respond successfully.",
+    "Static content and native sample playback remain available without JavaScript.",
+    "Missing audio produces an actionable error and playback recovers on retry.",
+    "Browser playback restriction is caught and explained.",
+    "Loaded in-site text/navigation remain usable when the connection drops.",
+    "No uncaught application JavaScript errors."
+  ],
+  "accessibility": [
+    {
+      "label": "widescreen home",
+      "violations": []
+    },
+    {
+      "label": "laptop home",
+      "violations": []
+    },
+    {
+      "label": "tablet-landscape home",
+      "violations": []
+    },
+    {
+      "label": "tablet-portrait home",
+      "violations": []
+    },
+    {
+      "label": "phone home",
+      "violations": []
+    },
+    {
+      "label": "small-phone home",
+      "violations": []
+    },
+    {
+      "label": "commercial",
+      "violations": []
+    },
+    {
+      "label": "about",
+      "violations": []
+    },
+    {
+      "label": "contact",
+      "violations": []
+    },
+    {
+      "label": "book",
+      "violations": []
+    },
+    {
+      "label": "phone book",
+      "violations": []
+    },
+    {
+      "label": "Now Playing dialog",
+      "violations": []
+    },
+    {
+      "label": "phone /commercial/",
+      "violations": []
+    },
+    {
+      "label": "phone /about/",
+      "violations": []
+    },
+    {
+      "label": "phone /contact/",
+      "violations": []
+    },
+    {
+      "label": "phone /books/stop-overthinking/",
+      "violations": []
+    }
+  ],
+  "consoleErrors": [],
+  "note": "Screenshots retained locally in ignored test-results; automated browser suite used installed Chrome with audio muted."
+}

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /legacy.html
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /test.html
+Disallow: /index%20-%20Copy.html
+Sitemap: https://seattlevo.com/sitemap.xml

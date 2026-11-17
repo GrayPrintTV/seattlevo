@@ -1,0 +1,15 @@
+{
+  "name": "seattlevo-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node serve.mjs",
+    "test": "node check.mjs",
+    "test:browser": "node browser-test.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.10.2",
+    "@playwright/test": "1.58.2"
+  }
+}
