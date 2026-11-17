@@ -3,8 +3,16 @@ import {readFile,access} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {books,routeFor} from '../assets/js/views.mjs';
+import {sortCatalog} from '../assets/js/catalog-order.mjs';
 process.chdir(fileURLToPath(new URL('../', import.meta.url)));
-assert.equal(books.length,24);
+assert.equal(books.length,28);
+assert.deepEqual(sortCatalog([...books].reverse()).map(b=>b.id),books.map(b=>b.id),'Release sorting must not depend on metadata order');
+assert.equal(books[0].id,'mythology-of-the-world');
+assert.equal(books.at(-1).id,'notes-to-my-highness');
+for (let i=1;i<books.length;i++) assert.ok(books[i-1].releaseDate>=books[i].releaseDate,'Newest releases must appear first');
+assert.deepEqual(sortCatalog([{...books[0],id:'z'},{...books[0],id:'a'}]).map(b=>b.id),['a','z']);
+assert.throws(()=>sortCatalog([{...books[0],releaseDate:'2024-02-30'}]),/Verified audiobook release date/);
+assert.throws(()=>sortCatalog([{...books[0],releaseDateSource:''}]),/Verified audiobook release date/);
 for (const key of ['id','sample','retailerUrl']) assert.equal(new Set(books.map(b => b[key])).size,books.length,`Duplicate ${key}`);
 for (const b of books) {
   assert.ok(b.title && b.id && b.genres.length);
@@ -23,6 +31,8 @@ for (const page of ['index.html','about/index.html','commercial/index.html','con
   assert.ok(html.includes('mailto:steve@seattlevo.com'));
   assert.ok(html.includes('<meta name="description"'));
   assert.ok(!html.includes(' autoplay'));
+  const renderedIds=[...html.matchAll(/data-book="([^"]+)"/g)].map(m=>m[1]);
+  assert.deepEqual(renderedIds,books.map(b=>b.id),'Static catalog must match release order');
   for (const [,attrs] of html.matchAll(/<button\b([^>]+)>/g)) {
     assert.ok(/data-(?:play|genre|seek|open-player|close-dialog|reset-filters)|id="(?:clear-search|open-player)"|class="[^"]*(?:toggle-play|toggle-mute)/.test(attrs),`Unwired button: ${attrs}`);
   }
@@ -42,4 +52,4 @@ for (const [,name,value] of colorBlock.matchAll(/^  ([\w-]+): "(#[\da-f]+)"$/gm)
 assert.equal(execFileSync('git',['hash-object','--path=index.html','legacy.html'],{encoding:'utf8'}).trim(),execFileSync('git',['rev-parse','f446ab9:index.html'],{encoding:'utf8'}).trim());
 const changed = execFileSync('git',['diff','--name-only','f446ab9','--','assets/audio','assets/images/books','assets/images/steve.jpg','assets/images/studio.jpg'],{encoding:'utf8'}).trim();
 assert.equal(changed,'','Original source assets changed');
-console.log('PASS: 24 unique records; all source/optimized media paths; 29 routes; static content; contact/retailer links; original page and source assets preserved.');
+console.log('PASS: 28 unique records; all source/optimized media paths; 33 routes; static content; contact/retailer links; original page and source assets preserved.');

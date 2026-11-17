@@ -73,7 +73,7 @@ Tonal surfaces do the work. Shadows are reserved for large cover art and modal o
 ## Components
 
 - Navigation: real links, active pill plus `aria-current`, client-side enhancement over static routes.
-- Catalog: one shared renderer; tonal hover, violet selection edge, text/title/author, live result count. Filter chips are native pressed buttons. Search has a named clear button. All 24 results are intentionally rendered; no unnecessary pagination.
+- Catalog: one shared renderer; tonal hover, violet selection edge, text/title/author, live result count. Filter chips are native pressed buttons. Search has a named clear button. All 28 results are intentionally rendered; no unnecessary pagination. Catalog order is explicitly newest audiobook release first; no visitor-facing sort selector.
 - Buttons: violet primary, outlined secondary, quiet icon/text actions. Hover, focus, pressed, and disabled states share tokens. A two-pixel focus outline is visible on all interactive elements.
 - Player: one audio element; all views delegate to the same controller. Idle, loading, playing, paused, ended, failed, and blocked playback have distinct text. Controls stay in place. No autoplay.
 - Dialogs: native `dialog.showModal()` for focus containment and inert background, close button, Escape, and trigger focus restoration. Video iframes are created only after a request and removed on close.
