@@ -1,0 +1,91 @@
+---
+version: alpha
+name: SeattleVO Listening Portfolio
+description: A voice artist's listening room, with black framing, tonal panels, cover artwork, and persistent playback.
+colors:
+  frame: "#080808"
+  surface: "#141414"
+  raised: "#202020"
+  hover: "#2b2b2b"
+  line: "#373737"
+  text: "#f5f3ef"
+  muted: "#b3b1ae"
+  accent: "#dfa993"
+  accent-hover: "#f0c2ae"
+  sage: "#bdd4c6"
+  lavender: "#d2c4e5"
+  error: "#ffb5ae"
+typography:
+  body:
+    fontFamily: "Segoe UI, Arial, sans-serif"
+    fontSize: "15px"
+    lineHeight: 1.65
+  display:
+    fontFamily: "Arial, Helvetica Neue, sans-serif"
+    lineHeight: 1.03
+rounded:
+  DEFAULT: "10px"
+  control: "28px"
+  artwork: "6px"
+spacing:
+  panel-gap: "8px"
+  desktop-content: "34px"
+  mobile-content: "21px"
+components:
+  button: {}
+  catalog: {}
+  player: {}
+  dialog: {}
+---
+
+# SeattleVO design system
+
+## Overview
+
+An audio portfolio for audiobook rights holders evaluating Steve Schaeffer after an audition. Secondary visitors are commercial voiceover clients. English interface, Seattle/US professional context; no Japan-market or multilingual scope.
+
+Hybrid register: expressive landing page and biography inside an application-style catalog and player. The user's Spotify screenshot is the structural reference: black outer frame, closely spaced rounded panels, clear active navigation, art-led browsing, and permanent transport. The distinctive signature is the waveform nameplate paired with Steve's real monochrome studio portrait and audiobook covers. No Spotify logo, retail checkout, playlists, or invented metrics.
+
+Runtime tokens in `assets/css/portfolio.css :root` are canonical (model B). This file mirrors their values and explains their roles. `colors.*` maps directly to `--*`, `typography.body` to `--font-body`, `typography.display` to `--font-display`, and `rounded.DEFAULT` to `--radius`. There is no second theme adapter or exported token layer. The project static test verifies this mapping.
+
+## Colors
+
+Four blacks create separation rather than a flat, gloomy canvas: frame, surface, raised, and hover. Text is warm white, secondary text remains readable gray. Copper marks the primary listen action and headline; sage identifies the catalog; lavender distinguishes narration metadata. Cover artwork supplies most of the saturation. Errors use both explicit text and the error token. Only one dark theme; forced-colors preserves platform controls.
+
+## Typography
+
+Bold, tightly spaced sans-serif display type echoes compact record-sleeve typography. Segoe UI/Arial body text is familiar and locally available, with no font download or layout shift. Descriptions use comfortable line height. Track times use tabular numerals. Catalog titles wrap to two lines; detail headings show the complete title. Tiny uppercase labels provide quiet hierarchy, never essential standalone instructions.
+
+## Layout
+
+Desktop: 86px header, 102px player, 8px panel gap, 290–370px catalog; main content owns its vertical scroll and catalog entries own a separate scroll. This viewport shell is explicitly requested by the project brief. No forms or unrelated workflows inherit it.
+
+At 1150px and 900px the catalog and portrait become more compact. At 700px the layout becomes a mobile screen stack: 120px branding/navigation header, one main or catalog screen, and an 84px mini-player plus safe area. The Audiobooks nav opens the mobile catalog; the brand opens the landing view. The player is outside both scrollers. Full controls open in a native modal dialog. Content and controls remain reachable at 320px width.
+
+## Elevation & Depth
+
+Tonal surfaces do the work. Shadows are reserved for large cover art and modal overlays. No decorative gradients; the range-control fill is a data indicator. No animation loops or loading overlays.
+
+## Shapes
+
+10px panel corners, 6–8px artwork and content corners, pill navigation and action buttons. Circular play/pause controls are consistent between sample, mini-player, and Now Playing. Portrait becomes circular only in compact layouts.
+
+## Components
+
+- Navigation: real links, active pill plus `aria-current`, client-side enhancement over static routes.
+- Catalog: one shared renderer; tonal hover, copper selection edge, text/title/author, live result count. Filter chips are native pressed buttons. Search has a named clear button. All 24 results are intentionally rendered; no unnecessary pagination.
+- Buttons: copper primary, outlined secondary, quiet icon/text actions. Hover, focus, pressed, and disabled states share tokens. A two-pixel focus outline is visible on all interactive elements.
+- Player: one audio element; all views delegate to the same controller. Idle, loading, playing, paused, ended, failed, and blocked playback have distinct text. Controls stay in place. No autoplay.
+- Dialogs: native `dialog.showModal()` for focus containment and inert background, close button, Escape, and trigger focus restoration. Video iframes are created only after a request and removed on close.
+- Scrollbars: global standards-based colors plus WebKit fallback, visible and operable, stable gutters, and forced-colors reset.
+- Icons: small inline SVGs with uniform 1.7px strokes; decorative icons are hidden from assistive technology. Text labels remain on primary actions.
+- Motion: 160–200ms hover feedback only, removed with reduced-motion preference.
+- Copy: concise, concrete, provisional. No unsupported claims, logos as client lists, or fictitious testimonials.
+
+## Do's and Don'ts
+
+- Use actual covers and the source photography. Optimize into new files; preserve originals.
+- Keep browsing state separate from playback state.
+- Keep contact and listening actions obvious on every device.
+- Do not introduce retail, follower, playlist, authentication, or ranking concepts.
+- Do not present speculative demo brands as clients.

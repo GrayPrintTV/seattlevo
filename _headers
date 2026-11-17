@@ -1,0 +1,12 @@
+/assets/js/*
+  Cache-Control: public, max-age=0, must-revalidate
+/assets/data/*
+  Cache-Control: public, max-age=0, must-revalidate
+/assets/css/portfolio.css
+  Cache-Control: public, max-age=0, must-revalidate
+/legacy.html
+  X-Robots-Tag: noindex
+/docs/*
+  X-Robots-Tag: noindex
+/scripts/*
+  X-Robots-Tag: noindex

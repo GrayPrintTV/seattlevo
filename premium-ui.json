@@ -1,0 +1,16 @@
+{
+  "profile": "product-admin",
+  "sourceRoots": ["."],
+  "locale": "en-US",
+  "canonicalMap": "UX-CONTRACT.md",
+  "requiredCapabilities": ["Scrollbar", "Toast"],
+  "requiredCommands": ["static", "browser"],
+  "commands": {
+    "static": "node scripts/check.mjs",
+    "browser": "node scripts/browser-test.mjs"
+  },
+  "evidence": {
+    "failurePaths": "scripts/browser-test.mjs",
+    "accessibility": "scripts/browser-test.mjs"
+  }
+}

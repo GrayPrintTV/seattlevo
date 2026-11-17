@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="{{DESCRIPTION}}">
+  <meta name="author" content="Steve Schaeffer">
+  <title>{{TITLE}}</title>
+  <link rel="canonical" href="https://seattlevo.com{{PATH}}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{TITLE}}">
+  <meta property="og:description" content="{{DESCRIPTION}}">
+  <meta property="og:url" content="https://seattlevo.com{{PATH}}">
+  <meta property="og:image" content="https://seattlevo.com/assets/images/portfolio/steve.webp">
+  <link rel="icon" href="/assets/images/portfolio/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/portfolio.css">
+  <script type="application/ld+json">{{SCHEMA}}</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-11DHTJ72EG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-11DHTJ72EG', {send_page_view: false});
+  </script>
+  <script type="module" src="/assets/js/app.mjs"></script>
+</head>
+<body data-view="{{VIEW}}">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="app-header">
+    <a class="brand" href="/" aria-label="Steve Schaeffer, Voice Artist — home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span><strong>Steve Schaeffer</strong><span>Voice Artist</span></span></a>
+    <nav class="primary-nav" aria-label="Main navigation">{{NAV}}</nav>
+    <a class="header-contact" href="mailto:steve@seattlevo.com">Let’s talk {{ARROW}}</a>
+  </header>
+  <div class="app-layout">
+    <aside class="catalog-panel" aria-labelledby="catalog-heading">
+      <div class="catalog-top"><div class="catalog-heading"><h2 id="catalog-heading" tabindex="-1">{{LIBRARY}} The catalog</h2><span class="catalog-total">{{COUNT}}</span></div><div class="genre-chips enhanced-only" aria-label="Filter by genre">{{CHIPS}}</div><div class="catalog-callout"><span class="callout-mark" aria-hidden="true">{{LIBRARY}}</span><div><strong>A story for every listener.</strong><p>Explore the range. Find your voice.</p></div></div><div class="catalog-search enhanced-only">{{SEARCH}}<label class="sr-only" for="catalog-search">Search titles or authors</label><input id="catalog-search" type="search" placeholder="Find a title or author" autocomplete="off"><button id="clear-search" class="icon-button" aria-label="Clear search" hidden>{{CLOSE}}</button></div><p id="catalog-count" class="catalog-count" role="status">{{COUNT}} audiobooks</p></div>
+      <div class="catalog-list" id="catalog-list">{{CATALOG}}</div>
+      <div class="catalog-bottom"><span>Narrated by Steve Schaeffer</span><a href="/contact/" aria-label="Contact Steve Schaeffer">{{ARROW}}</a></div>
+    </aside>
+    <main id="main-content" class="main-panel" tabindex="-1">{{CONTENT}}</main>
+  </div>
+  <section class="player enhanced-only" aria-label="Audio sample player">
+    <div class="player-track"><button id="open-player" class="track-info" aria-label="Open Now Playing" aria-haspopup="dialog"><img id="player-cover" src="/assets/images/portfolio/mythology-of-the-world-128.webp" alt="" width="56" height="56"><span><strong id="player-title">Mythology of the World</strong><span id="player-subtitle">Steve Schaeffer · Narration sample</span></span></button><button class="icon-button expand-player" data-open-player aria-label="Expand Now Playing">{{EXPAND}}</button></div>
+    <div class="transport"><div class="transport-buttons"><button class="icon-button skip-time" data-seek="-15" aria-label="Rewind 15 seconds"><span aria-hidden="true">↶</span><small>15</small></button><button class="round-play toggle-play" aria-label="Play sample">{{PLAY}}</button><button class="icon-button skip-time" data-seek="15" aria-label="Forward 15 seconds"><span aria-hidden="true">↷</span><small>15</small></button></div><div class="progress-row"><span class="elapsed">0:00</span><label class="sr-only" for="player-progress">Sample position</label><input id="player-progress" class="progress" type="range" min="0" max="100" value="0" step="0.1" disabled><span class="duration">0:00</span></div></div>
+    <div class="player-end"><div class="volume-group"><button class="icon-button toggle-mute" aria-label="Mute">{{VOLUME}}</button><label class="sr-only" for="player-volume">Volume</label><input id="player-volume" class="volume" type="range" min="0" max="1" step="0.05" value="1"></div><p class="player-status" role="status">Ready when you are</p></div>
+  </section>
+  <audio id="audio" preload="metadata" src="/assets/audio/MythologyoftheWorldSample.mp3"></audio>
+  <dialog id="now-playing" aria-labelledby="now-playing-heading"><div class="now-playing-header"><p id="now-playing-heading" class="eyebrow">Now playing · Narration sample</p><button class="icon-button" data-close-dialog aria-label="Close Now Playing" autofocus>{{CLOSE}}</button></div><img id="now-cover" src="/assets/images/portfolio/mythology-of-the-world-480.webp" alt="Mythology of the World cover" width="480" height="480"><h2 id="now-title">Mythology of the World</h2><p id="now-author">David Grayson</p><p class="narrator">Narrated by Steve Schaeffer</p><div class="progress-row"><span class="elapsed">0:00</span><label class="sr-only" for="now-progress">Sample position</label><input id="now-progress" class="progress" type="range" min="0" max="100" value="0" step="0.1" disabled><span class="duration">0:00</span></div><div class="transport-buttons"><button class="icon-button skip-time" data-seek="-15" aria-label="Rewind 15 seconds"><span aria-hidden="true">↶</span><small>15</small></button><button class="round-play toggle-play" aria-label="Play sample">{{PLAY}}</button><button class="icon-button skip-time" data-seek="15" aria-label="Forward 15 seconds"><span aria-hidden="true">↷</span><small>15</small></button></div><p class="player-status" role="status">Ready when you are</p><a id="now-detail" class="text-link" href="/books/mythology-of-the-world/">View audiobook {{ARROW}}</a><div class="volume-group"><button class="icon-button toggle-mute" aria-label="Mute">{{VOLUME}}</button><label class="sr-only" for="now-volume">Volume</label><input id="now-volume" class="volume" type="range" min="0" max="1" step="0.05" value="1"></div></dialog>
+  <dialog id="video-dialog" aria-labelledby="video-title"><div class="now-playing-header"><h2 id="video-title">Commercial demo</h2><button class="icon-button" data-close-dialog aria-label="Close video" autofocus>{{CLOSE}}</button></div><div id="video-frame"></div><p>Video not loading? <a id="video-external" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">Watch on YouTube {{EXTERNAL}}</a></p></dialog>
+  <noscript><div class="no-script"><p>Browse the audiobook pages and listen to the samples with your browser’s audio player. JavaScript enables continuous playback between pages.</p>{{NATIVE_SAMPLE}}</div></noscript>
+</body>
+</html>
