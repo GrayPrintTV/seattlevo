@@ -32,7 +32,7 @@ for (const page of ['index.html','about/index.html','commercial/index.html','con
   }
 }
 assert.equal(routeFor('/unknown/').view,'missing');
-const design = await readFile('DESIGN.md','utf8');
+const design = (await readFile('DESIGN.md','utf8')).replaceAll('\r\n','\n');
 const css = await readFile('assets/css/portfolio.css','utf8');
 const colorBlock = design.split('colors:\n')[1].split('typography:')[0];
 for (const [,name,value] of colorBlock.matchAll(/^  ([\w-]+): "(#[\da-f]+)"$/gm)) {
