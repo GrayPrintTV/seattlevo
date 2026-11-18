@@ -36,8 +36,16 @@
 ::-webkit-scrollbar-thumb { background: var(--scroll-thumb); border: 2px solid var(--surface); border-radius: 8px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--scroll-hover); }
 ::-webkit-scrollbar-thumb:active { background: var(--muted); }
-body { margin: 0; }
+/* Our editorial voice is lowercase; attributed work keeps its original casing. */
+body { margin: 0; text-transform: lowercase; }
+.original-case,
+.catalog-copy strong, .catalog-copy > span,
+.book-title, .featured-title, .detail-heading h1, .subtitle, .byline,
+.book-description > p, blockquote p, cite, .profiles a,
+#player-title, #now-title, #now-author, input { text-transform: none; }
+input::placeholder { text-transform: lowercase; }
 button, input { font: inherit; }
+button { text-transform: inherit; }
 button, a, input[type='range'] { -webkit-tap-highlight-color: transparent; }
 button, a { touch-action: manipulation; }
 button { cursor: pointer; color: inherit; }

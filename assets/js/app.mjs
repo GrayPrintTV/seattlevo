@@ -141,7 +141,7 @@ function updateTrack() {
   $('#now-cover').src = currentBook.artwork;
   $('#now-cover').alt = currentBook.title + ' cover';
   $('#now-title').textContent = currentBook.title;
-  $('#now-author').textContent = currentBook.author || (currentBook.editors ? 'Edited by '+currentBook.editors : '');
+  $('#now-author').textContent = currentBook.author || (currentBook.editors ? 'edited by '+currentBook.editors : '');
   $('#now-detail').href = '/books/'+currentBook.id+'/';
   $('#open-player').setAttribute('aria-label', `Open Now Playing: ${currentBook.title}`);
   if ('mediaSession' in navigator && 'MediaMetadata' in window) {
@@ -321,6 +321,7 @@ document.addEventListener('click', event => {
     pause();
     dialogTrigger = link;
     $('#video-title').textContent = video.title;
+    $('#video-title').classList.toggle('original-case', video.type === 'Client project');
     $('#video-external').href = link.href;
     const frame = document.createElement('iframe');
     frame.src = `https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0`;
