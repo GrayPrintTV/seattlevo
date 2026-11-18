@@ -27,6 +27,7 @@ node scripts/serve.mjs
 - `index.html`, `audiobooks/`, `books/`, `commercial/`, `about/`, `contact/`: directly addressable static content. JavaScript enhances navigation; it does not supply the only readable content.
 - `404.html`: static missing-page fallback. `_headers`: conservative asset revalidation and noindex headers for authoring/legacy material.
 - `assets/images/portfolio/`: optimized copies of actual covers, portrait, and studio photo. All original source assets remain intact.
+- `assets/fonts/courier-prime/`: self-hosted regular/bold typewriter fonts and SIL Open Font License. The typewriter identity uses `typewriter-mark.svg` in the header, `typewriter-icon.svg` / root `favicon.ico` for browser tabs, and `typewriter-touch.png` for home-screen bookmarks. The previous favicon is preserved.
 
 ### Adding an audiobook
 

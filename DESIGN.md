@@ -1,27 +1,27 @@
 ---
 version: alpha
 name: SeattleVO Listening Portfolio
-description: A voice artist's listening room, with deep plum framing, tonal panels, cover artwork, and persistent playback.
+description: A voice artist's listening room, with warm charcoal framing, tonal panels, cover artwork, and persistent playback.
 colors:
-  frame: "#140b18"
-  surface: "#1f1224"
-  raised: "#2a1c30"
-  hover: "#38263f"
-  line: "#503c59"
-  text: "#f2ecf8"
-  muted: "#a799b4"
-  accent: "#b58be3"
-  accent-hover: "#cba7ee"
-  secondary-accent: "#cbb4de"
-  lavender: "#d8c1ee"
-  error: "#ffb5ae"
+  frame: "#141210"
+  surface: "#1e1b17"
+  raised: "#29241e"
+  hover: "#383027"
+  line: "#665747"
+  text: "#f3e7d5"
+  muted: "#bcae99"
+  accent: "#efae83"
+  accent-hover: "#f5c5a3"
+  secondary-accent: "#d4b56f"
+  metadata: "#dfc798"
+  error: "#ffb5a0"
 typography:
   body:
-    fontFamily: "Georgia, Times New Roman, serif"
+    fontFamily: "Courier Prime, Courier New, monospace"
     fontSize: "15px"
     lineHeight: 1.65
   display:
-    fontFamily: "Georgia, Times New Roman, serif"
+    fontFamily: "Courier Prime, Courier New, monospace"
     lineHeight: 1.08
 rounded:
   DEFAULT: "10px"
@@ -44,17 +44,17 @@ components:
 
 An audio portfolio for audiobook rights holders evaluating Steve Schaeffer after an audition. Secondary visitors are commercial voiceover clients. English interface, Seattle/US professional context; no Japan-market or multilingual scope.
 
-Hybrid register: expressive landing page and biography inside an application-style catalog and player. The user's Spotify screenshot is the structural reference: near-black plum outer frame, closely spaced rounded panels, clear active navigation, art-led browsing, and permanent transport. The distinctive signature is the waveform nameplate paired with Steve's real monochrome studio portrait and audiobook covers. No Spotify logo, retail checkout, playlists, or invented metrics.
+Hybrid register: expressive landing page and biography inside an application-style catalog and player. The user's Spotify screenshot is the structural reference: warm charcoal outer frame, closely spaced rounded panels, clear active navigation, art-led browsing, and permanent transport. The distinctive signature is the typewriter nameplate paired with Steve's real monochrome studio portrait and audiobook covers. No Spotify logo, retail checkout, playlists, or invented metrics.
 
 Runtime tokens in `assets/css/portfolio.css :root` are canonical (model B). This file mirrors their values and explains their roles. `colors.*` maps directly to `--*`, `typography.body` to `--font-body`, `typography.display` to `--font-display`, and `rounded.DEFAULT` to `--radius`. There is no second theme adapter or exported token layer. The project static test verifies this mapping.
 
 ## Colors
 
-The user-selected Deep Plum palette defines the brand: background #140B18, surface #1F1224, accent #B58BE3, text #F2ECF8, and muted #A799B4. Four plum-black tones create separation: frame, surface, raised, and hover. Pale lilac text and readable muted mauve keep the interface light. Violet marks the primary listen action and headline; a softer lilac identifies the catalog and section labels; lavender distinguishes narration metadata. Cover artwork supplies most of the saturation. Errors use both explicit text and the error token. Only one dark theme; forced-colors preserves platform controls.
+The owner's typewriter reference (2026-11-18) sets the palette: ink-black #141210, warm charcoal #1E1B17, paper #F3E7D5, faded peach #EFAE83, and ochre #D4B56F. Raised and hover panels are brown-black; muted text stays readable. Peach marks primary actions and the headline. Ochre replaces every green/teal accent in the supplied reference, including catalog callouts and secondary links. Artwork supplies richer color. Metadata uses light wheat. Errors retain an explicit text message and salmon tone. No texture overlays or decorative gradients obscure the work.
 
 ## Typography
 
-Georgia is the main typeface throughout the portfolio, chosen by the owner on 2026-11-18. Bold Georgia gives the main headline, artist name, and section headings a literary character; regular Georgia keeps body copy, navigation, catalog entries, and secondary controls calm. Headline tracking is restrained and line height accommodates the serifs. The CSS uses locally installed Georgia with Times New Roman and generic serif fallbacks; no font files are bundled or downloaded. Descriptions use comfortable line height. Track times use tabular numerals. Catalog titles wrap to two lines; detail headings show the complete title. Tiny uppercase labels provide quiet hierarchy, never essential standalone instructions.
+Courier Prime brings the typewriter character of the supplied reference to display, body, and interface text. Regular and bold Latin WOFF2 subsets are self-hosted under the SIL Open Font License, preloaded for stable first paint, with Courier New/monospace fallbacks. Bold headlines and catalog titles contrast with regular body copy. The name, tagline, navigation, and small labels use lowercase styling; stored titles and professional content retain their spelling and capitalization. Line lengths, wrapping, and compact-screen headline placement are adjusted for the wider monospace face. Descriptions retain comfortable line height; full book titles remain readable in detail views.
 
 ## Layout
 
@@ -73,11 +73,12 @@ Tonal surfaces do the work. Shadows are reserved for large cover art and modal o
 ## Components
 
 - Navigation: real links, active pill plus `aria-current`, client-side enhancement over static routes.
-- Catalog: one shared renderer; tonal hover, violet selection edge, text/title/author, live result count. Filter chips are native pressed buttons. Search has a named clear button. All 28 results are intentionally rendered; no unnecessary pagination. Catalog order is explicitly newest audiobook release first; no visitor-facing sort selector.
-- Buttons: violet primary, outlined secondary, quiet icon/text actions. Hover, focus, pressed, and disabled states share tokens. A two-pixel focus outline is visible on all interactive elements.
+- Catalog: one shared renderer; tonal hover, peach selection edge, text/title/author, live result count. Filter chips are native pressed buttons. Search has a named clear button. All 28 results are intentionally rendered; no unnecessary pagination. Catalog order is explicitly newest audiobook release first; no visitor-facing sort selector.
+- Buttons: peach primary, outlined secondary, quiet icon/text actions. Hover, focus, pressed, and disabled states share tokens. A two-pixel focus outline is visible on all interactive elements.
 - Player: one audio element; all views delegate to the same controller. Idle, loading, playing, paused, ended, failed, and blocked playback have distinct text. Controls stay in place. No autoplay.
 - Dialogs: native `dialog.showModal()` for focus containment and inert background, close button, Escape, and trigger focus restoration. Video iframes are created only after a request and removed on close.
 - Scrollbars: global standards-based colors plus WebKit fallback, visible and operable, stable gutters, and forced-colors reset.
+- Identity: an original outlined typewriter replaces the waveform in the header. A simplified matching SVG/ICO favicon and 180px touch icon preserve recognition at small sizes; the old favicon remains in the source assets.
 - Icons: small inline SVGs with uniform 1.7px strokes; decorative icons are hidden from assistive technology. Text labels remain on primary actions.
 - Motion: 160–200ms hover feedback only, removed with reduced-motion preference.
 - Copy: concise, concrete, provisional. No unsupported claims, logos as client lists, or fictitious testimonials.
