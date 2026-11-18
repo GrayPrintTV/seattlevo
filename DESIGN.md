@@ -44,7 +44,7 @@ components:
 
 An audio portfolio for audiobook rights holders evaluating Steve Schaeffer after an audition. Secondary visitors are commercial voiceover clients. English interface, Seattle/US professional context; no Japan-market or multilingual scope.
 
-Hybrid register: expressive landing page and biography inside an application-style catalog and player. The user's Spotify screenshot is the structural reference: warm charcoal outer frame, closely spaced rounded panels, clear active navigation, art-led browsing, and permanent transport. The distinctive signature is the typewriter nameplate paired with Steve's real monochrome studio portrait and audiobook covers. No Spotify logo, retail checkout, playlists, or invented metrics.
+Hybrid register: expressive landing page and biography inside an application-style catalog and player. The user's Spotify screenshot is the structural reference: warm charcoal outer frame, closely spaced rounded panels, clear active navigation, art-led browsing, and permanent transport. The distinctive signature is the typewriter nameplate paired with Steve's supplied warm-toned studio portrait and audiobook covers. No Spotify logo, retail checkout, playlists, or invented metrics.
 
 Runtime tokens in `assets/css/portfolio.css :root` are canonical (model B). This file mirrors their values and explains their roles. `colors.*` maps directly to `--*`, `typography.body` to `--font-body`, `typography.display` to `--font-display`, and `rounded.DEFAULT` to `--radius`. There is no second theme adapter or exported token layer. The project static test verifies this mapping.
 
@@ -90,3 +90,5 @@ Tonal surfaces do the work. Shadows are reserved for large cover art and modal o
 - Keep contact and listening actions obvious on every device.
 - Do not introduce retail, follower, playlist, authentication, or ranking concepts.
 - Do not present speculative demo brands as clients.
+
+Portrait update (2026-11-18): `steve-toned.png` is a byte-for-byte copy of the owner-supplied `sepiame.png`, used on the landing page, About, and social previews. No CSS color filter is applied. Previous portrait assets remain preserved.
