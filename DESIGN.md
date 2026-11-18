@@ -17,12 +17,12 @@ colors:
   error: "#ffb5ae"
 typography:
   body:
-    fontFamily: "Segoe UI, Arial, sans-serif"
+    fontFamily: "Georgia, Times New Roman, serif"
     fontSize: "15px"
     lineHeight: 1.65
   display:
-    fontFamily: "Arial, Helvetica Neue, sans-serif"
-    lineHeight: 1.03
+    fontFamily: "Georgia, Times New Roman, serif"
+    lineHeight: 1.08
 rounded:
   DEFAULT: "10px"
   control: "28px"
@@ -54,7 +54,7 @@ The user-selected Deep Plum palette defines the brand: background #140B18, surfa
 
 ## Typography
 
-Bold, tightly spaced sans-serif display type echoes compact record-sleeve typography. Segoe UI/Arial body text is familiar and locally available, with no font download or layout shift. Descriptions use comfortable line height. Track times use tabular numerals. Catalog titles wrap to two lines; detail headings show the complete title. Tiny uppercase labels provide quiet hierarchy, never essential standalone instructions.
+Georgia is the main typeface throughout the portfolio, chosen by the owner on 2026-11-18. Bold Georgia gives the main headline, artist name, and section headings a literary character; regular Georgia keeps body copy, navigation, catalog entries, and secondary controls calm. Headline tracking is restrained and line height accommodates the serifs. The CSS uses locally installed Georgia with Times New Roman and generic serif fallbacks; no font files are bundled or downloaded. Descriptions use comfortable line height. Track times use tabular numerals. Catalog titles wrap to two lines; detail headings show the complete title. Tiny uppercase labels provide quiet hierarchy, never essential standalone instructions.
 
 ## Layout
 
