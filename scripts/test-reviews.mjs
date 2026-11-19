@@ -17,9 +17,10 @@ try {
   const active=page.locator('[data-review-slide].is-active');
   const next=page.getByRole('button',{name:'Next review',exact:true});
   const previous=page.getByRole('button',{name:'Previous review',exact:true});
-  const rotation=page.locator('[data-review-action="rotation"]');
   const total=listenerReviews.length+3;
   await expect(root).toHaveClass(/reviews-enhanced/);
+  await expect(page.locator('#reviews-heading')).toHaveText('kind words from the other side of the mic');
+  await expect(page.locator('[data-review-action="rotation"], [data-review-count]')).toHaveCount(0);
   await expect(page.locator('h1')).toHaveText('a storyteller’s ear');
   await expect(page.locator('.approach h2')).toHaveText('inhabit your languagesteward your vision');
   await expect(page.locator('.catalog-callout h3')).toHaveText('Explore the range.Find your voice.');
@@ -32,9 +33,8 @@ try {
   await root.hover();const hovered=await active.getAttribute('data-review-slide');
   await page.waitForTimeout(5300);await expect(active).toHaveAttribute('data-review-slide',hovered);
   await next.focus();await page.mouse.move(1,1);
-  await expect(rotation).toHaveText('Resume rotation');
   await page.waitForTimeout(5300);await expect(active).toHaveAttribute('data-review-slide',hovered);
-  pass('Hover pauses temporarily; keyboard focus stops rotation until explicitly resumed.');
+  pass('Hover pauses temporarily; keyboard browsing stops automatic rotation.');
   await previous.click();await expect(active).toHaveAttribute('data-review-slide','car-manual');
   const height=(await root.boundingBox()).height;
   for(let i=0;i<total;i++) {
@@ -45,11 +45,10 @@ try {
   }
   await expect(active).toHaveAttribute('data-review-slide','car-manual');
   pass(`All ${total} reviews can be browsed, wrap correctly, preserve layout height, and hide inactive slides from keyboard/screen readers.`);
-  await rotation.click();await expect(rotation).toHaveText('Pause rotation');
   await page.mouse.move(1,1);
   await expect(active).toHaveAttribute('data-review-slide','0w_xusRYoto',{timeout:6500});
-  await rotation.click();await expect(rotation).toHaveText('Resume rotation');
-  pass('Explicit resume and pointer pause controls work.');
+  await root.hover();
+  pass('Leaving the carousel after mouse browsing resumes automatic rotation.');
   await active.locator('[data-video]').click();
   await expect(page.locator('#video-dialog')).toBeVisible();
   await expect(page.locator('#video-title')).toHaveText('Hoboken Coffee Roasters');
@@ -67,14 +66,16 @@ try {
   await page.locator('.player .toggle-play').click();
   pass('Review-to-book navigation and browser Back preserve playing audio and reinitialize the carousel.');
   await page.emulateMedia({reducedMotion:'reduce'});
-  await expect(rotation).toHaveText('Resume rotation');
   for(const [label,width,height] of [['wide',1920,1080],['laptop',1366,768],['tablet',768,1024],['phone',390,844],['small-phone',320,740]]) {
     await page.setViewportSize({width,height});
     await page.goto(base+'/about/');
     await expect(root).toHaveClass(/reviews-enhanced/);
-    await expect(rotation).toHaveText('Resume rotation');
     await page.screenshot({path:`test-results/about-${label}.png`});
     await root.scrollIntoViewIfNeeded();
+    if(label==='wide') {
+      await page.mouse.move(1,1);await page.waitForTimeout(5300);
+      await expect(active).toHaveAttribute('data-review-slide','car-manual');
+    }
     await page.screenshot({path:`test-results/reviews-${label}.png`});
     for(let i=0;i<total;i++) {
       const size=await page.evaluate(()=>({window:innerWidth,body:document.body.scrollWidth,main:document.querySelector('main').scrollWidth,available:document.querySelector('main').clientWidth}));
@@ -88,18 +89,16 @@ try {
   const plain=await browser.newPage({javaScriptEnabled:false});await plain.goto(base+'/about/');
   assert.equal(await plain.locator('[data-review-slide]').count(),total);
   for(const slide of await plain.locator('[data-review-slide]').all()) await expect(slide).toBeVisible();
-  await expect(plain.locator('.review-controls')).toBeHidden();
+  await expect(plain.locator('[data-review-action]:visible')).toHaveCount(0);
   pass('No-JavaScript fallback exposes every quote and source link without dead controls.');
   const touchContext=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true});
   const touch=await touchContext.newPage();await touch.goto(base+'/about/');
   const touchRoot=touch.locator('[data-reviews]');await expect(touchRoot).toHaveClass(/reviews-enhanced/);
   await touchRoot.scrollIntoViewIfNeeded();
   await touch.getByRole('button',{name:'Next review',exact:true}).tap();
-  await expect(touch.locator('[data-review-action="rotation"]')).toHaveText('Resume rotation');
-  await touch.locator('[data-review-action="rotation"]').tap();
   const touched=await touch.locator('.review-slide.is-active').getAttribute('data-review-slide');
   await expect(touch.locator('.review-slide.is-active')).not.toHaveAttribute('data-review-slide',touched,{timeout:6500});
-  pass('Touch arrows and Resume rotate correctly without a synthetic hover trapping the carousel.');
+  pass('Touch arrows work and rotation continues without a synthetic hover trapping the carousel.');
   await touchContext.close();
   assert.deepEqual(errors,[]);pass('No application errors.');
 } finally {

@@ -2,9 +2,27 @@ import assert from 'node:assert/strict';
 import {readFile,access} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
+import {createHash} from 'node:crypto';
 import {books,routeFor} from '../assets/js/views.mjs';
 import {sortCatalog} from '../assets/js/catalog-order.mjs';
 process.chdir(fileURLToPath(new URL('../', import.meta.url)));
+const sourceCSS = (await readFile('assets/css/portfolio.css','utf8')).replaceAll('\r\n','\n');
+const stylesheet = '/assets/css/portfolio.' + createHash('sha256').update(sourceCSS).digest('hex').slice(0,12) + '.css';
+assert.equal((await readFile('.'+stylesheet,'utf8')).replaceAll('\r\n','\n'),sourceCSS,'Generated stylesheet differs from canonical source');
+const rootHTML=await readFile('index.html','utf8');
+const entry=rootHTML.match(/type="module" src="([^"]+)"/)[1];
+const checkedModules=new Set();
+async function checkModule(url) {
+  if(checkedModules.has(url)) return;
+  checkedModules.add(url);
+  const source=(await readFile('.'+url,'utf8')).replaceAll('\r\n','\n');
+  const hash=createHash('sha256').update(source).digest('hex').slice(0,12);
+  assert.ok(url.endsWith('.'+hash+'.mjs'),'Invalid module fingerprint: '+url);
+  for(const [,specifier] of source.matchAll(/from\s*['"](\.[^'"]+\.mjs)['"]/g)) {
+    await checkModule(new URL(specifier,'https://seattlevo.com'+url).pathname);
+  }
+}
+await checkModule(entry);
 assert.equal(books.length,28);
 assert.deepEqual(sortCatalog([...books].reverse()).map(b=>b.id),books.map(b=>b.id),'Release sorting must not depend on metadata order');
 assert.equal(books[0].id,'mythology-of-the-world');
@@ -19,6 +37,8 @@ for (const b of books) {
   assert.ok(['www.audible.com','www.amazon.com'].includes(new URL(b.retailerUrl).hostname));
   for (const key of ['cover','sample','thumbnail','artwork']) await access('.'+b[key]);
   const html = await readFile(`books/${b.id}/index.html`,'utf8');
+  assert.ok(html.includes(`href="${stylesheet}"`),'Book uses stale stylesheet version');
+  assert.ok(html.includes(`src="${entry}"`),'Book uses stale script version');
   assert.ok(html.includes('href="'+b.retailerUrl.replaceAll('&','&amp;')+'"'));
   assert.ok(html.includes('<h1 tabindex="-1">'));
   assert.ok(html.includes('https://seattlevo.com/books/'+b.id+'/'));
@@ -26,6 +46,8 @@ for (const b of books) {
 }
 for (const page of ['index.html','about/index.html','commercial/index.html','contact/index.html','audiobooks/index.html','404.html']) {
   const html = await readFile(page,'utf8');
+  assert.ok(html.includes(`href="${stylesheet}"`),'Page uses stale stylesheet version');
+  assert.ok(html.includes(`src="${entry}"`),'Page uses stale script version');
   assert.ok(!html.includes('{{'));
   assert.ok(!/[\u00e2][\u20ac]|[\u00c2][\u00b7]/.test(html),'UTF-8 mojibake');
   assert.ok(html.includes('mailto:steve@seattlevo.com'));
