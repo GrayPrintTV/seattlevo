@@ -34,7 +34,7 @@ for (const page of ['index.html','about/index.html','commercial/index.html','con
   const renderedIds=[...html.matchAll(/data-book="([^"]+)"/g)].map(m=>m[1]);
   assert.deepEqual(renderedIds,books.map(b=>b.id),'Static catalog must match release order');
   for (const [,attrs] of html.matchAll(/<button\b([^>]+)>/g)) {
-    assert.ok(/data-(?:play|genre|seek|open-player|close-dialog|reset-filters)|id="(?:clear-search|open-player)"|class="[^"]*(?:toggle-play|toggle-mute)/.test(attrs),`Unwired button: ${attrs}`);
+    assert.ok(/data-(?:play|genre|seek|open-player|close-dialog|reset-filters|review-action)|id="(?:clear-search|open-player)"|class="[^"]*(?:toggle-play|toggle-mute)/.test(attrs),`Unwired button: ${attrs}`);
   }
   for (const match of html.matchAll(/(?:src|href)="(\/[^"?#]+)"/g)) {
     const url = match[1];
