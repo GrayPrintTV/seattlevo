@@ -2,10 +2,35 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import {createHash} from 'node:crypto';
 import { sortCatalog } from '../assets/js/catalog-order.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
+// New styles get a new URL, even when a visitor retains the old stylesheet in cache.
+const css = (await readFile(path.join(root, 'assets/css/portfolio.css'), 'utf8')).replaceAll('\r\n', '\n');
+const stylePath = '/assets/css/portfolio.' + createHash('sha256').update(css).digest('hex').slice(0,12) + '.css';
+await writeFile(path.join(root, stylePath.slice(1)), css);
 const catalog = sortCatalog(JSON.parse(await readFile(path.join(root, 'assets/data/catalog.json'), 'utf8')));
 await writeFile(path.join(root, 'assets/data/catalog.mjs'), '// Generated from catalog.json by scripts/build.mjs.\nexport const books = ' + JSON.stringify(catalog, null, 2) + ';\n');
+// Version the complete local module graph, so cached code and fresh markup stay in sync.
+const published = new Map();
+async function publishModule(relative) {
+  if (published.has(relative)) return published.get(relative);
+  let source = (await readFile(path.join(root, relative), 'utf8')).replaceAll('\r\n','\n');
+  const imports = [...source.matchAll(/from\s*['"](\.[^'"]+\.mjs)['"]/g)];
+  for (const match of imports) {
+    const dependency = path.posix.normalize(path.posix.join(path.posix.dirname(relative), match[1]));
+    const artifact = await publishModule(dependency);
+    let specifier = path.posix.relative(path.posix.dirname(relative), artifact);
+    if (!specifier.startsWith('.')) specifier = './' + specifier;
+    source = source.replace(match[0], match[0].replace(match[1], specifier));
+  }
+  const hash = createHash('sha256').update(source).digest('hex').slice(0,12);
+  const artifact = relative.replace(/\.mjs$/, '.' + hash + '.mjs');
+  await writeFile(path.join(root, artifact), source);
+  published.set(relative, artifact);
+  return artifact;
+}
+const appPath = '/' + await publishModule('assets/js/app.mjs');
 const {routeFor, catalogItems, chips, icons, escapeHTML:e, featured} = await import('../assets/js/views.mjs');
 const template = await readFile(path.join(root, 'scripts/page.html'), 'utf8');
 const routes = ['/', '/audiobooks/', '/commercial/', '/about/', '/contact/', ...catalog.map(b => '/books/' + b.id + '/')];
@@ -17,6 +42,8 @@ for (const url of [...routes, '/404.html']) {
   const nav = [['audiobooks','Audiobooks','/'],['commercial','Commercial VO','/commercial/'],['about','About','/about/'],['contact','Contact','/contact/']].map(([key,label,href]) => `<a href="${href}" data-section="${key}" ${key === route.section ? 'aria-current="page"' : ''}>${label}</a>`).join('');
   const values = {TITLE:e(route.title), DESCRIPTION:e(description), PATH:url, VIEW:route.view, NAV:nav, CONTENT:route.html, COUNT:String(catalog.length), CATALOG:catalogItems(catalog, route.book?.id), CHIPS:chips(), SCHEMA:JSON.stringify(schema).replace(/</g,'\\u003c'), NATIVE_SAMPLE:`<h2 class="original-case">${e(sample.title)} · sample</h2><audio controls preload="none" src="${sample.sample}"></audio>`};
   for (const [name,svg] of Object.entries(icons)) values[name.toUpperCase()] = svg;
+  values.STYLESHEET = stylePath;
+  values.APP_MODULE = appPath;
   const html = template.replace(/\{\{([A-Z_]+)\}\}/g, (_, key) => {if (!(key in values)) throw new Error('Unknown template key: '+key); return values[key];});
   const dest = path.join(root, url === '/404.html' ? '404.html' : url.slice(1), url === '/404.html' ? '' : 'index.html');
   await mkdir(path.dirname(dest), {recursive:true});

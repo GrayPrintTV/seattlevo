@@ -204,13 +204,8 @@ cite { display: block; font-style: normal; color: var(--muted); font-size: 10px;
 .review-carousel { padding: clamp(20px, 3vw, 32px); background: var(--raised); border: 1px solid var(--line); border-radius: 8px; margin-top: 35px; }
 .review-carousel .section-heading { margin: 0 0 18px; }
 .review-carousel h2 { font-size: 19px; }
-.review-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
-.review-controls[hidden] { display: none; }
-.review-controls > .text-link { background: transparent; border: 1px solid var(--line); border-radius: 24px; padding: 8px 12px; min-height: 40px; font-size: 13px; color: var(--secondary-accent); }
-.review-controls > .text-link:hover { background: var(--hover); color: var(--text); }
-.review-browse { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
-.review-browse .icon-button { width: 44px; height: 44px; }
-.review-browse [data-review-count] { min-width: 56px; text-align: center; color: var(--muted); font-size: 13px; }
+.reviews-enhanced .review-frame { display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; gap: 12px; align-items: center; }
+.review-frame > .icon-button { width: 44px; height: 44px; color: var(--secondary-accent); }
 .review-slide { margin: 0; padding: 25px 0 5px; min-width: 0; }
 .review-slide + .review-slide { border-top: 1px solid var(--line); }
 .review-slide blockquote { margin: 0; }
@@ -487,8 +482,10 @@ body:not(.enhanced) .main-panel { padding-bottom: 20px; }
   .about-hero h1 { font-size: 40px; }
   .about-portrait { height: 330px; object-position: center 22%; }
   .approach { gap: 25px; }
-  .review-controls { gap: 6px; }
-  .review-controls > .text-link { font-size: 13px; }
+  .review-carousel { padding: 20px 8px; }
+  .review-carousel .section-heading { padding: 0 12px; }
+  .reviews-enhanced .review-frame { grid-template-columns: 32px minmax(0, 1fr) 32px; gap: 2px; }
+  .review-frame > .icon-button { width: 32px; }
   .contact-page { padding-top: 35px; }
   .contact-page h1 { font-size: 46px; }
   .email-link { font-size: 23px; gap: 10px; }

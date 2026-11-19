@@ -48,6 +48,8 @@ Hybrid register: expressive landing page and biography inside an application-sty
 
 Runtime tokens in `assets/css/portfolio.css :root` are canonical (model B). This file mirrors their values and explains their roles. `colors.*` maps directly to `--*`, `typography.body` to `--font-body`, `typography.display` to `--font-display`, and `rounded.DEFAULT` to `--radius`. There is no second theme adapter or exported token layer. The project static test verifies this mapping.
 
+The build publishes a byte-equivalent `assets/css/portfolio.<content-hash>.css` and links every static page to it. Edit only `portfolio.css`, then rebuild. Content-derived URLs prevent an older cached stylesheet from styling new markup; generated snapshots preserve the same token source, not an independent theme. The build also fingerprints the complete local JavaScript module graph and rewrites its imports, so cached controllers and views cannot drift from new static markup. Edit the unversioned modules, never generated snapshots.
+
 ## Colors
 
 The owner's typewriter reference (2026-11-18) sets the palette: ink-black #141210, warm charcoal #1E1B17, paper #F3E7D5, faded peach #EFAE83, and ochre #D4B56F. Raised and hover panels are brown-black; muted text stays readable. Peach marks primary actions and the headline. Ochre replaces every green/teal accent in the supplied reference, including catalog callouts and secondary links. Artwork supplies richer color. Metadata uses light wheat. Errors retain an explicit text message and salmon tone. No texture overlays or decorative gradients obscure the work.
@@ -83,7 +85,7 @@ Tonal surfaces do the work. Shadows are reserved for large cover art and modal o
 - Motion: 160–200ms hover feedback only, removed with reduced-motion preference.
 - Copy: concise, concrete, provisional. No unsupported claims, logos as client lists, or fictitious testimonials.
 - About: storytelling leads; radio remains a supporting credential. The catalog callout is a two-line gold heading, “explore the range. / find your voice.”
-- Reviews: a warm raised panel with original-case quotations, verified book/client credits, source/project links, and quiet rotation controls. Slides share a stable grid footprint. The car-manual quote opens the sequence; the “fine” review has an owner-authored lowercase aside outside the quotation. No ornamental stars or fabricated ratings.
+- Reviews: a warm raised panel headed “kind words from the other side of the mic,” with original-case quotations, verified book/client credits, source/project links, and only left/right chevrons flanking the quote. No visible count or pause button. Slides share a stable grid footprint. The car-manual quote opens the sequence; the “fine” review has an owner-authored lowercase aside outside the quotation. No ornamental stars or fabricated ratings.
 
 ## Do's and Don'ts
 
