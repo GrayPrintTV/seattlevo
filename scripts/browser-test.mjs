@@ -75,7 +75,7 @@ try {
   await page.locator('[data-section="contact"]').click();
   assert.equal(await page.locator('#audio').evaluate(a=>a.currentSrc),initial.src);
   assert.equal(await page.locator('#audio').evaluate(a=>a.paused),false);
-  await page.goBack();await expect(page.locator('h1')).toContainText('A broadcast voice.');
+  await page.goBack();await expect(page.locator('h1')).toContainText('a storyteller’s ear');
   await page.goBack();await expect(page.locator('h1')).toContainText('Make yourself');
   await page.goBack();await expect(page.locator('h1')).toHaveText('Merciless');
   await page.goForward();await expect(page.locator('h1')).toContainText('Make yourself');
@@ -183,7 +183,7 @@ try {
     await expect(deniedPage.locator('.player .player-status')).toContainText('Playback needs a tap');
     await denied.close();passed('Browser playback restriction is caught and explained.');
     await context.setOffline(true);
-    await page.locator('[data-section="about"]').click();await expect(page.locator('h1')).toContainText('A broadcast voice.');
+    await page.locator('[data-section="about"]').click();await expect(page.locator('h1')).toContainText('a storyteller’s ear');
     await page.locator('[data-section="contact"]').click();await expect(page.locator('h1')).toContainText('Your words.');
     await context.setOffline(false);passed('Loaded in-site text/navigation remain usable when the connection drops.');
   }

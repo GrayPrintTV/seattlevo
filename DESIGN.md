@@ -82,6 +82,8 @@ Tonal surfaces do the work. Shadows are reserved for large cover art and modal o
 - Icons: small inline SVGs with uniform 1.7px strokes; decorative icons are hidden from assistive technology. Text labels remain on primary actions.
 - Motion: 160–200ms hover feedback only, removed with reduced-motion preference.
 - Copy: concise, concrete, provisional. No unsupported claims, logos as client lists, or fictitious testimonials.
+- About: storytelling leads; radio remains a supporting credential. The catalog callout is a two-line gold heading, “explore the range. / find your voice.”
+- Reviews: a warm raised panel with original-case quotations, verified book/client credits, source/project links, and quiet rotation controls. Slides share a stable grid footprint. The car-manual quote opens the sequence; the “fine” review has an owner-authored lowercase aside outside the quotation. No ornamental stars or fabricated ratings.
 
 ## Do's and Don'ts
 

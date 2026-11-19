@@ -1,4 +1,5 @@
 import {books, featured, icons, routeFor, catalogItems, escapeHTML as e, videos} from './views.mjs';
+import {mountReviews} from './review-carousel.mjs';
 
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
@@ -19,6 +20,7 @@ let lastTrackedPath;
 let sampleBlobURL;
 let seekController;
 let pendingSeekTarget = null;
+let unmountReviews;
 
 function filters() {
   const params = new URLSearchParams(location.search);
@@ -47,7 +49,12 @@ function syncPage({focus = false, restore = false} = {}) {
   const changed = nextRoute.title !== route.title || nextRoute.view !== route.view;
   route = nextRoute;
   document.body.dataset.view = route.view;
-  if (changed) main.innerHTML = route.html;
+  if (changed) {
+    unmountReviews?.();
+    unmountReviews = undefined;
+    main.innerHTML = route.html;
+  }
+  if (!unmountReviews) unmountReviews = mountReviews(main.querySelector('[data-reviews]'));
   document.title = route.title;
   const description = route.book ? `${route.book.title}${route.book.author ? ' by '+route.book.author : ''}, narrated by Steve Schaeffer. Listen to an audiobook sample and explore the portfolio.` : 'Steve Schaeffer, Seattle voice artist and audiobook narrator. Hear narration samples, commercial voiceover demos, and commissioned work. Amplify Your Impact.';
   $('meta[name="description"]').content = description;
